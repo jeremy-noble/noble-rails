@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>NobleRails</title>
+  <meta charset="utf-8">
+  <title>Noble Desktop | Computer Graphics Training in New York</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="colorBar"></div>
+  <%= render 'shared/goodies' %>
+  <%= render 'shared/header' %>
 
 <%= yield %>
 

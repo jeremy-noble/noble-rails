@@ -1,0 +1,38 @@
+<div id="goodies">
+  <div class="wrapper">
+    <nav>
+      <ul>
+            <li class="keyboard"><a href="#">Keyboard Shortcuts</a></li>
+            <li class="characters"><a href="#">HTML Special Characters</a></li>
+            <li class="type"><a href="#">Typography Rules</a></li>
+            <li class="htmlGuide"><a href="#">Quick Guide to HTML</a></li>
+            <li class="enews"><a href="#">Sign Up for Noble eNews</a></li>
+        </ul>
+        <div class="social">
+          <a href="#" target="_blank"><%= image_tag "goodies-facebook.png" %><p>Like Us on Facebook for a Chance to Win a Free Workbook!</p></a>
+          <a href="#" target="_blank"><%= image_tag "goodies-twitter.png" %><p>Follow Us on Twitter!</p></a>
+        </div>
+    </nav>
+    <div id="freeClassSignUp">
+        <div id="freeClass">
+            <h1>Win a Free Class!</h1>
+            <p>Join our email list for a chance to win</p>
+            <form name="info" id="freeClassSignupForm" action="/index.cfm" method="post">
+              <input type="hidden" name="fuseaction" value="checkFormInfo">
+                <input type="hidden" name="subject" value="New E-News Subscriber">
+                <input type="hidden" name="emailOptIn" value="yes">
+                <input type="hidden" name="redirect" value="http://www.nobledesktop.com/">
+                <input type="hidden" name="RegistrationType" value="FreeClass">
+                <input name="entrypage" type="hidden" value="">
+                <input name="entrydate" type="hidden" value="">
+                <input name="numberofvisits" type="hidden" value="">
+                <input name="referrerpage" type="hidden" value="">
+                <input type="text" name="firstName" id="firstName" value="First Name">
+                <input type="text" name="lastName" id="lastName" value="Last Name">
+                <input type="email" name="email" id="email" value="Email Address">
+                <button type="submit" class="lozenge fl">Enter To Win<cfinclude template="/inc/lozenge-arrow.cfm"></button>
+            </form>
+        </div>
+    </div>
+  </div>
+</div>
