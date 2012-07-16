@@ -1,0 +1,61 @@
+<div class="colorBar"></div>
+<footer id="pageFooter">
+    <div class="wrapper clearfix">
+        <section class="info">
+            <h5>Contact Us</h5>
+            <p>594 Broadway, Suite 1202<br>
+            New York, NY 10012<br>
+            <span class="map"><a href="#">View a Map</a></span></p>
+            
+            <p>(212) 226-4149</p>
+            
+            <p class="email">
+                <a class="mLink"></a>
+                <noscript>
+                &#101;&#100;&#117;&#99;&#97;&#116;&#111;&#114;&#45;&#105;&#110;&#45;&#99;&#104;&#105;&#101;&#102; at &#110;&#111;&#98;&#108;&#101;&#100;&#101;&#115;&#107;&#116;&#111;&#112; dot &#99;&#111;&#109;
+                </noscript>
+            </p>
+        </section>
+        <section class="directions">
+            <h5>Directions</h5>
+            
+            <p><a href="#">By Subway</a><br>
+      <a href="#">By Car</a></p>
+        
+            <p><a href="#">Parking</a><br>
+      <a href="#">Hotel Info</a></p>
+        </section>
+        <section class="newsletter">
+            <h5>Newsletter</h5>
+      <div id="footerSignUpWrapper">
+              <form id="footerSignUp" name="footerSignUp" method="post" action="#">
+                <input type="hidden" name="fuseaction" value="checkFormInfo">
+                  <input type="hidden" name="subject" value="New E-News Subscriber">
+                  <input type="hidden" name="emailOptIn" value="yes">
+                  <input type="hidden" name="redirect" value="http://www.nobledesktop.com/">
+                  <input type="hidden" name="RegistrationType" value="Enews">
+                  <input name="entrypage" type="hidden" value="">
+                  <input name="entrydate" type="hidden" value="">
+                  <input name="numberofvisits" type="hidden" value="">
+                  <input name="referrerpage" type="hidden" value="">
+                  <input type="email" name="email"  id="footerSignUpEmail" value="example@address.com">
+                  <button type="submit" name="footerSignUpSubmit" id="footerSignUpSubmit"><%= image_tag "footer-sign-up.png" %></button>
+              </form>
+      </div>
+            <p class="social">
+                <a href="#" target="_blank" class="facebook">Like Us</a>
+                <a href="#" target="_blank" class="twitter">Follow Us</a>
+            </p>
+            <p id="copyright">© 1999–<%= Time.now.year %> Noble Desktop LLC</p> 
+        </section>
+  </div>        
+    <div class="wrapper">
+        <section id="partners">
+          <%= image_tag "footer-adobe-authorized.png", {alt: "Adobe Authorized Training Center", class: "adobe"} %>
+            <div class="rightSide">
+                <a href="#" target="_blank"><%= image_tag "footer-aiga.png", {alt: "AIGA New York Chapter Partner"} %></a>
+                <a href="#" target="_blank"><%= image_tag "footer-istock.png", {alt: "iStockPhoto", class: "istock"} %></a>
+            </div>
+        </section>
+    </div>
+</footer>
