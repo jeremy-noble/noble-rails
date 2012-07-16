@@ -1,0 +1,692 @@
+/* START OF ROYAL SLIDER STYLES */
+
+ /*  
+ 
+ RoyalSlider
+ 
+ */
+.royalSlider {  
+  position:relative;
+  /* set width and height of slider here, in px, % or em*/
+  width: 600px;
+  height: 350px;
+  /* Used to prevent content "jumping" on page load. this property is removed when javascript is loaded and slider is instanciated */
+  overflow:hidden;
+}
+/**
+*  Slides area (set background here)
+*/
+
+.royalSlider .royalWrapper {
+  overflow:hidden;  
+  position:relative;
+
+  width:100%; 
+  height:100%;
+}
+.royalSlider .royalSlide,
+.royalSlider .royalWrapper {
+  /* Bakground behind slides */
+  /* background: #111111; 
+  background: -moz-linear-gradient(top, #111111 0%, #242424 100%);  
+  background: -webkit-linear-gradient(top, #111111 0%,#242424 100%); 
+  background: -o-linear-gradient(top, #111111 0%,#242424 100%);
+  background: -ms-linear-gradient(top, #111111 0%,#242424 100%);  
+  background: linear-gradient(top, #111111 0%,#242424 100%); */
+}
+/* slides holder, grabbing container */
+.royalSlider .royalSlidesContainer {
+  position: relative;
+  left: 0;
+  top: 0 !important;
+  list-style:none !important;
+  margin:0 !important;
+  padding:0 !important;
+  border: 0 !important;
+}
+
+
+/* slide item */
+.royalSlider .royalSlide {
+  padding: 0 !important;
+  margin: 0 !important; 
+  border: 0 !important;
+  list-style: none !important;
+  
+  position:relative;
+  float:left; 
+  
+  overflow:hidden;  
+}
+
+/* 
+
+  Direction Navigation (arrows) 
+
+*/
+.royalSlider .arrow { 
+  /*background:url(/js/royalSlider/img/controlsSprite.png) no-repeat 0 0;*/
+  background-color: #C00;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+
+  /* change arrows size here */
+  width: 45px;
+  height: 90px;
+  
+  top: 50%;
+  margin-top:-45px; 
+  
+  cursor: pointer;
+  display: block;
+  position: absolute;   
+  
+  z-index: 25;
+}
+.royalSlider.classSlider .arrow {
+  top: auto;
+  bottom: -23px;
+  z-index: 1000;
+}
+.royalSlider .arrow:hover {
+  
+}
+.royalSlider .arrow.disabled {
+  
+}
+/* left arrow */
+.royalSlider .arrow.left {
+  background-position: top left;
+  left: 0;  
+}
+/* right arrow */
+.royalSlider .arrow.right {
+  background-position: top right;
+  right: 0;
+}
+
+
+
+
+/* Control navigation container (bullets or thumbs) */
+.royalSlider .royalControlNavOverflow {
+  width:100%;
+  overflow:hidden;
+  position:absolute;
+  margin-top:-20px;
+  z-index:25;
+}
+/* This container is inside ".royalControlNavContainer"  
+   and is used for auto horizontal centering */
+.royalSlider .royalControlNavCenterer { 
+  float: left;
+  position: relative;
+  left: -50%;
+}
+/* Control navigation container*/ 
+.royalSlider .royalControlNavContainer {
+  float: left;
+  position: relative;
+  left: 50%;  
+}
+
+
+/* Scrollable thumbnails containers */
+.royalSlider .royalControlNavThumbsContainer {    
+  left:0;
+  position:relative;
+}
+.royalSlider .thumbsAndArrowsContainer {
+  overflow:hidden;
+  width: 100%;
+  position: relative;
+}
+.royalSlider .royalControlNavOverflow.royalThumbs { 
+  width: auto;
+  position: relative;
+  overflow: hidden;
+  margin-top:4px; 
+}
+
+
+
+
+
+
+/* 
+
+  Control navigation (bullets, thumbnails)
+  
+*/
+.royalSlider .royalControlNavOverflow a{  
+  background:#0C0 none no-repeat scroll 0 0;
+  
+  width:20px;
+  height:20px;  
+  
+  float:left; 
+  cursor:pointer; 
+  
+  position:relative;
+  display:block;
+  
+  text-indent: -9999px; 
+}
+/* Current control navigation item */
+.royalSlider .royalControlNavOverflow a.current { 
+  background-color: #C00; 
+}
+/* Hover state navigation item */
+.royalSlider .royalControlNavOverflow a:hover { 
+  background-color: #00C;
+}
+
+/* Thumbnails */
+.royalSlider .royalControlNavOverflow a.royalThumb{ 
+  /*background: none no-repeat 0 0;*/
+  /*background-color: ;*/
+  width:144px;
+  height:60px;  
+  /* thumbnails spacing, use margin-right only */ 
+  margin-right:4px;
+  
+}
+.royalSlider .royalControlNavOverflow a.royalThumb.current {  
+  background-position: -3px -3px  !important;
+  border:3px solid #C00 !important;
+  width:138px;
+  height:54px;
+}
+.royalSlider .royalControlNavOverflow a.royalThumb:hover {  
+  background-position: -3px -3px; 
+  border:3px solid #00C;
+  width:138px;
+  height:54px;
+}
+
+
+
+/* 
+
+  Thumbnails navigation arrows 
+  
+*/
+.royalSlider .thumbsArrow { 
+  width: 38px;
+  height: 68px; 
+  margin-top: 14px;
+  
+  cursor: pointer;
+  display: block;
+  position: relative;   
+  z-index: 25;
+  
+  background: #C99;
+  
+}
+.royalSlider .thumbsArrow.left {  
+  float: left;
+}
+.royalSlider .thumbsArrow.right { 
+  float: right;
+}
+.royalSlider .thumbsArrow:hover  {
+  
+}
+.royalSlider .thumbsArrow.disabled {
+  
+}
+
+
+
+/* Captions container */
+.royalSlider .royalCaption {
+  /* -webkit-transform: translate3d(0,0,0); prevents text thicknes changes while animating */
+  z-index:20;
+  display:block;
+  position:absolute;  
+  left:0;
+  top:0;
+  /*font: normal normal normal 1em/1.5em Georgia, serif;
+  color:#FFF;   */
+}
+/* Caption item */
+.royalSlider .royalCaptionItem {
+  position:absolute;  
+  left:0;
+  top:0;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/* Loading (welcome) screen */
+.royalSlider .royalLoadingScreen {
+  background:#FFF;
+  width:100%;
+  height:100%;
+  position:absolute;
+  z-index:99; 
+}
+/* Loading screen text ("Loading...") */
+.royalSlider .royalLoadingScreen p {    
+  width:100%;
+  position:absolute;  
+  margin:0 auto;
+  top: 45%;
+  text-align:center;
+}
+
+/* single slide image preloader */
+.royalSlider .royalPreloader {  
+  position:absolute;
+  width:24px;
+  height:24px;
+  left:50%;
+  top:50%;
+  margin-left:-12px;
+  margin-top:-12px; 
+  z-index:0;  
+  background-image:url(/js/royalSlider/img/preloader.gif);
+}
+
+
+
+
+
+
+.royalSlider .grab-cursor{cursor:move;}
+.royalSlider .grab-cursor{cursor:url("/js/img/royalSlider/cursors/grab.png") 8 8,-moz-grab;}
+.royalSlider .grab-cursor{*cursor:url(/js/img/royalSlider/cursors/grab.cur);}
+.royalSlider .grab-cursor{cursor:move\0/;} /* ie8 hack */
+
+.royalSlider .grabbing-cursor{cursor:move;}
+.royalSlider .grabbing-cursor{cursor:url("/js/img/royalSlider/cursors/grabbing.png") 8 8,-moz-grabbing;}
+.royalSlider .grabbing-cursor{*cursor:url(/js/img/royalSlider/cursors/grabbing.cur);}
+
+
+/* Cursor used if mouse dragging is disabled */
+.royalSlider .auto-cursor{cursor:auto;}
+
+.royalSlider .royalHtmlContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.royalSlider .non-draggable {
+  cursor: auto;
+}
+.royalSlider .fade-container .royalSlide{
+  position: absolute;
+  left: 0;
+  top: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  z-index: 10;
+}
+.royalSlider .royalImage {
+  max-width:none;
+  margin:0;
+  padding: 0 !important;
+  border: 0 !important; 
+}
+#slideShow .royalPlayPause, #facilitiesSlider .royalPlayPause {
+  background: url(/image/royal-slider-controls.png) left top;
+}
+#slideShow .royalPlayPause.play, #facilitiesSlider .royalPlayPause.play {
+  background-position: right top;
+}
+#slideShow.homeSlider { 
+  -webkit-box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 8px;
+     -moz-box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 8px;
+          box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 8px;
+      
+  border: 6px solid #5b6064;
+}
+#slideShow.classSlider {
+  width: 530px;
+  height: 365px;
+  margin-top: 3px;
+}
+#slideShow .panel-content {
+  /* [disabled]width: 680px; */
+  height: 378px;
+  padding-top: 0px;
+  position: relative;
+}
+#slideShow.homeSlider .panel-content {
+  background-image: url(/assets/bg-slideshow.jpg);
+}
+#slideShow .category {
+  font-size: 18px;
+  line-height: 30px;
+  background: url(/assets/slider-sem-head-right.png) no-repeat right top;
+  padding-right: 35px;
+  display: inline-block;
+}
+#slideShow .category a  {
+  display: block;
+  background: url(/assets/slider-sem-head-left.png) no-repeat left top;
+  margin: 0;
+  padding-left: 35px;
+}
+#slideShow .titles {
+  text-align: center;
+  -webkit-text-shadow: 0px 1px 2px #3E5768;
+  -moz-text-shadow: 0px 1px 2px #3E5768;
+  -o-text-shadow: 0px 1px 2px #3E5768;
+  text-shadow: 0px 1px 2px #3E5768;
+}
+#slideShow .titles p {
+  margin-bottom: 0px;
+}
+#slideShow header {
+  overflow: hidden;
+  position: relative;
+}
+#slideShow hgroup {
+  float: left;
+  position: relative;
+  left: 50%;
+}
+/* title-slide */
+#slideShow #title-slide h1 {
+  font: 50px LeagueGothicRegular, Arial, sans-serif;
+  text-transform: uppercase;
+  -webkit-text-shadow: 0px 1px 2px #4F6D80;
+  -moz-text-shadow: 0px 1px 2px #4F6D80;
+  -o-text-shadow: 0px 1px 2px #4F6D80;
+  text-shadow: 0px 1px 2px #4F6D80;
+  text-align: center;
+  padding-top: 20px;
+}
+#slideShow #title-slide h2 {
+  font: 30px LeagueGothicRegular, Arial, sans-serif;
+  color: #333;
+  text-transform: uppercase;
+  -webkit-text-shadow: 0px -1px 0px rgba(250,250,250, 0.5);
+  -moz-text-shadow: 0px -1px 0px rgba(250,250,250, 0.5);
+  -o-text-shadow: 0px -1px 0px rgba(250,250,250, 0.5);
+  text-shadow: 0px 1px 0px rgba(250,250,250, 0.5);
+  text-align: center;
+}
+#slideShow #title-slide .icon {
+  position: absolute;
+  display: block;
+  z-index: 999999;
+}
+#slideShow #title-slide img:hover {
+  margin-top: -20px;
+  cursor: pointer;
+  padding-bottom: 40px;
+}
+#slideShow #title-slide canvas {
+  position: relative;
+  z-index: -100;
+}
+#slideShow #title-slide img {
+  margin-bottom: -4px;
+}
+#title-slide img, #title-slide canvas, #title-slide img:hover, #title-slide img:hover + canvas {
+  transition-property: all;
+  -moz-transition-property: all;
+  -webkit-transition-property: all;
+  -o-transition-property: all;
+  transition-duration: .3s;
+  -moz-transition-duration: .3s;
+  -webkit-transition-duration: .3s;
+  -o-transition-duration: .3s;
+  overflow: visible;
+}
+#slideShow #title-slide #finalcut {
+  top: 130px;
+  left: 49px;
+  z-index: 100;
+}
+#slideShow #title-slide #wordpress {
+  top: 144px;
+  left: 98px;
+  z-index: 110;
+}
+#slideShow #title-slide #id {
+  top: 161px;
+  left: 152px;
+  z-index: 120;
+}
+#slideShow #title-slide #fw {
+  top: 180px;
+  left: 216px;
+  z-index: 130;
+}
+#slideShow #title-slide #dw {
+  top: 186px;
+  left: 290px;
+  z-index: 140;
+}
+#slideShow #title-slide #fl {
+  top: 180px;
+  left: 372px;
+  z-index: 130;
+}
+#slideShow #title-slide #ps {
+  top: 161px;
+  left: 438px;
+  z-index: 120;
+}
+#slideShow #title-slide #il {
+  top: 144px;
+  left: 493px;
+  z-index: 110;
+}
+#slideShow #title-slide #keynote {
+  top: 129px;
+  left: 549px;
+  z-index: 100;
+}
+#slideShow header h1{
+  text-transform: none;
+  font: 42px/50px LeagueGothicRegular, Arial, sans-serif;
+  white-space: nowrap;
+  float: left;
+  position: relative;
+  left: -50%;
+}
+#slideShow header h1 img{
+  vertical-align: middle;
+  margin: 10px;
+}
+#slideShow .graphic {
+  margin-top: 15px;
+  line-height: 0px;
+  text-align: right;
+  width: 350px;
+}
+#slideShow .graphic .shadow {
+  -webkit-box-shadow: 3px 3px 7px #333;
+     -moz-box-shadow: 3px 3px 7px #333;
+          box-shadow: 3px 3px 7px #333;
+}
+#slideShow .info {
+  -webkit-text-shadow: 0px 1px 0px #3E5768;
+     -moz-text-shadow: 0px 1px 0px #3E5768;
+       -o-text-shadow: 0px 1px 0px #3E5768;
+          text-shadow: 0px 1px 0px #3E5768;
+      
+  position: absolute;
+  width: 240px;
+  top: 110px;
+  left: 380px;
+}
+#slideShow .date {
+  font-size: 34px;
+  margin: 13px 0px;
+  line-height: 30px;
+}
+#slideShow .day {
+  font-size: 22px;
+  margin: 10px 0px;
+}
+#slideShow .time {
+  font-size: 18px;
+  margin: 12px 0px 10px;
+  background: url(/assets/bg-bevel-line-shadow9-over-highlight12.png) repeat-x left top;
+  padding-top: 10px;
+}
+#slideShow .button {
+  color: #FFF;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 13px;
+  padding: 4px 10px 5px;
+  margin: 12px 12px 12px 0px;
+  float: left;
+  background-color: #445E6D;
+  
+  background-image: -webkit-linear-gradient(bottom, rgb(89,119,138) 0%, rgb(67,93,107) 90%);
+  background-image:    -moz-linear-gradient(bottom, rgb(89,119,138) 0%, rgb(67,93,107) 90%);
+  background-image:      -o-linear-gradient(bottom, rgb(89,119,138) 0%, rgb(67,93,107) 90%);
+  background-image:     -ms-linear-gradient(bottom, rgb(89,119,138) 0%, rgb(67,93,107) 90%);
+  background-image:         linear-gradient(bottom, rgb(89,119,138) 0%, rgb(67,93,107) 90%);
+  
+  -webkit-border-radius: 12px;
+     -moz-border-radius: 12px;
+          border-radius: 12px;
+      
+  border-bottom: 1px solid #64889A;
+  border-top: 1px solid #3E5768;
+}
+#slideShow .button:hover {
+  background: #930F1F;
+}
+#slideShow .register {
+  margin-right: 0px;
+}
+#slideShow.classSlider .shadow {
+  -webkit-box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.7);
+     -moz-box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.7);
+          box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.7);
+}
+#slideShow.classSlider .panel-content {
+  text-align: center;
+}
+#slideShow.classSlider p {
+  font: 200 18px/26px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 4px 0px;
+}
+#slideShow.classSlider .exampleLeft {
+  float: left;
+}
+#slideShow.classSlider .captionRight {
+  margin-left: 20px;
+  width: 130px;
+  float: left;
+  text-align: left;
+}
+#slideShow.classSlider .exampleCenter {
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 100px;
+}
+#slideShow.single {
+  height: auto;
+}
+#slideShow.single p {
+  text-align: center;
+  margin-top: 10px;
+}
+.nobleThumbnailSlider.royalSlider, #facilitiesSlider #slideShow {
+  width: 918px;
+  margin: 0px auto;
+}
+#facilitiesSlider .royalSlider {  
+  height: 430px;
+  float: none;
+}
+#teacherSlider.royalSlider {  
+  height: 280px;
+}
+.nobleThumbnailSlider.royalSlider.minimal .thumbsAndArrowsContainer {
+  background: none;
+}
+.nobleThumbnailSlider .instructorPic, .nobleThumbnailSlider .facilityPic {
+  float: left;
+  margin-left: 25px;
+  margin-right: 30px;
+  width: 260px;
+  height: 260px;
+  
+  -webkit-box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.7);
+     -moz-box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.7);
+          box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.7);
+      
+  -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;  
+      
+  overflow: hidden; 
+}
+#facilitiesSlider .facilityPic {
+  width: 864px;
+  height: 400px;
+}
+#facilitiesSlider #slideShow {
+  padding-bottom: 0px; /* remove if we want to add the thumbnails back in */
+}
+.nobleThumbnailSlider.royalSlider.minimal .arrow.left {
+  left: -35px;
+}
+.nobleThumbnailSlider.royalSlider.minimal .arrow.right {
+  right: -35px;
+}
+.nobleThumbnailSlider .royalControlNavOverflow.royalThumbs {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.nobleThumbnailSlider.royalSlider.minimal .royalControlNavOverflow a.royalThumb { 
+  border: 0px;  
+  
+  -webkit-box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.7);
+     -moz-box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.7);
+          box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.7);
+      
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px; 
+}
+.nobleThumbnailSlider.royalSlider.minimal .royalControlNavOverflow a.royalThumb:hover {
+  border: 0px;
+  border-bottom: 4px solid #FFF;
+}
+.nobleThumbnailSlider.royalSlider.minimal .royalControlNavOverflow a.royalThumb.current {
+  border: 0px !important;
+  border-bottom: 4px solid #F00 !important;
+}
+
+#teacherSlider h2 {
+  font-weight: 200;
+  font-size: 36px;
+  margin-top: 50px;
+  margin-bottom: 15px;
+}
+#teacherSlider h3 {
+  font-weight: 200;
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: #999;
+}
+#teacherSlider p {
+  padding-right: 40px;
+}
+#teacherSlider p a {
+  color: #2FC7F9;
+}
+
+.nobleThumbnailSlider .royalCaption {
+  font-size: 25px;
+  -webkit-text-shadow: 0px 1px 4px rgba(0, 0, 0, 1.0);
+     -moz-text-shadow: 0px 1px 4px rgba(0, 0, 0, 1.0);
+          text-shadow: 0px 1px 4px rgba(0, 0, 0, 1.0);
+}
+/* END OF ROYAL SLIDER STYLES */
