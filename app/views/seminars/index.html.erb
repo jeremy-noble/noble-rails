@@ -1,0 +1,23 @@
+<h1>Listing seminars</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @seminars.each do |seminar| %>
+  <tr>
+    <td><%= seminar.name %></td>
+    <td><%= link_to 'Show', seminar %></td>
+    <td><%= link_to 'Edit', edit_seminar_path(seminar) %></td>
+    <td><%= link_to 'Destroy', seminar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Seminar', new_seminar_path %>
