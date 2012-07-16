@@ -12,7 +12,9 @@
       <section class="halfPgCol right homePgSeminars">
         <h2>Free Seminars<%= image_tag "ribbons/dw-right.png", {class: "ribbon"} %></h2>
         <cfinclude template="/inc/dspNextSeminars-normal-online.cfm">
-        <a href="/seminars/" class="lozenge dw">See All Our Free Seminars<%= image_tag "lozenge-arrow.png" %></a>
+        <%= link_to seminars_path, class: "lozenge dw" do %>
+          See All Our Free Seminars <%= image_tag("lozenge-arrow.png") %>
+        <% end %>
       </section>
     </div>
 </div>
