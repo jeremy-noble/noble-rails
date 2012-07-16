@@ -17,7 +17,7 @@
         <div id="freeClass">
             <h1>Win a Free Class!</h1>
             <p>Join our email list for a chance to win</p>
-            <form name="info" id="freeClassSignupForm" action="/index.cfm" method="post">
+            <form name="info" id="freeClassSignupForm" action="#" method="post">
               <input type="hidden" name="fuseaction" value="checkFormInfo">
                 <input type="hidden" name="subject" value="New E-News Subscriber">
                 <input type="hidden" name="emailOptIn" value="yes">
@@ -30,7 +30,7 @@
                 <input type="text" name="firstName" id="firstName" value="First Name">
                 <input type="text" name="lastName" id="lastName" value="Last Name">
                 <input type="email" name="email" id="email" value="Email Address">
-                <button type="submit" class="lozenge fl">Enter To Win<cfinclude template="/inc/lozenge-arrow.cfm"></button>
+                <button type="submit" class="lozenge fl">Enter To Win<%= image_tag "lozenge-arrow.png" %></button>
             </form>
         </div>
     </div>

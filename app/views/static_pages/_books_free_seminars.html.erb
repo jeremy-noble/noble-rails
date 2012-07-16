@@ -1,0 +1,18 @@
+<div class="halfColsWrapper grid">
+  <div class="wrapper divided clearfix">
+    <section class="halfPgCol left homePgBooks">
+            <h2><%= image_tag "ribbons/id-left.png", {class: "ribbon"} %>Workbooks</h2>
+            <a href="/books/"><%= image_tag "home-workbook-stack.png", {class: "graphic", alt: "Noble Desktop Workbooks"} %></a>
+      <div class="text">
+                <p>Study at home with the same books we use in our classes. Step-by-step exercises walk you through multiple projects, each dealing with different aspects of the program. It’s the next best thing to taking a course.</p>
+                <a href="/books/" class="lozenge id">See All Our Books<%= image_tag "lozenge-arrow.png" %></a>
+            </div>
+      </section>
+      
+      <section class="halfPgCol right homePgSeminars">
+        <h2>Free Seminars<%= image_tag "ribbons/dw-right.png", {class: "ribbon"} %></h2>
+        <cfinclude template="/inc/dspNextSeminars-normal-online.cfm">
+        <a href="/seminars/" class="lozenge dw">See All Our Free Seminars<%= image_tag "lozenge-arrow.png" %></a>
+      </section>
+    </div>
+</div>
