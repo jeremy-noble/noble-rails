@@ -14,6 +14,12 @@ NobleRails::Application.configure do
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
+  #Compress CSS with yui
+  config.assets.css_compressor = :yui
+
+  #Compress js with uglifier
+  config.assets.js_compressor = :uglifier
+
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = false
 
