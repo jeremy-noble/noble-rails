@@ -21,3 +21,22 @@
 <br />
 
 <%= link_to 'New Seminar', new_seminar_path %>
+
+
+
+
+
+
+
+<div id="mainContent" class="grid clearfix">
+    <header class="pgTitle alignLeft">
+    <div class="wrapper">
+          <hgroup>
+            <h1><%= image_tag "ribbons/fl-left.png", {class: "ribbonLeft"} %>Free Seminars <%= image_tag "ribbons/fl-right.png", {class: "ribbonRight"} %></h1>
+          </hgroup>
+    </div>
+    </header>
+  <div class="wrapper clearfix">
+     <cfinclude template="/inc/seminar-form.cfm">
+  </div>
+</div>
