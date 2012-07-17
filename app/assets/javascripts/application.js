@@ -13,5 +13,6 @@
 //= require modernizr
 //= require jquery
 //= require jquery_ujs
+//= require plugins
 //= require shared
 //= require_tree .
