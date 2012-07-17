@@ -1,4 +1,6 @@
 NobleRails::Application.routes.draw do
+  resources :seminar_times
+
   resources :seminars
 
   root to: 'static_pages#home'
