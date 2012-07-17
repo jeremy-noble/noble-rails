@@ -3,6 +3,7 @@ class SeminarsController < ApplicationController
   # GET /seminars.json
   def index
     @seminars = Seminar.all
+    #@seminars = Seminar.find(:all, :order => 'start_date')
 
     respond_to do |format|
       format.html # index.html.erb
