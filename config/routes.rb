@@ -1,7 +1,7 @@
 NobleRails::Application.routes.draw do
-  resources :seminar_times
-
-  resources :seminars
+  resources :seminars do
+    resources :seminar_times
+  end
 
   root to: 'static_pages#home'
 

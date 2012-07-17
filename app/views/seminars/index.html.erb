@@ -51,7 +51,10 @@
          <section class="seminarList clearfix">
           <!-- list seminars -->
           <!-- loop through output -->
-          <% @seminars.each do |seminar| %>
+          <% @seminars.each do |seminar| %>jeremy
+            <% seminar.seminar_times.each do |seminar_time| %>
+              <p><%= seminar_time.start_date %></p>
+            <% end %>
             <div class="seminar nyc">
               <div class="row" id="seminarRow_#idx#">
                 <div class="title"><a href="/seminars/#seminarsArr[idx].PageLink#"><%= seminar.name %></a></div>
