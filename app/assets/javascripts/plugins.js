@@ -130,165 +130,165 @@ jQuery.easing['jswing']=jQuery.easing['swing'];jQuery.extend(jQuery.easing,{def:
  
 /* From prototype.js */
 if (!document.myGetElementsByClassName) {
-	document.myGetElementsByClassName = function(className) {
-		var children = document.getElementsByTagName('*') || document.all;
-		var elements = new Array();
-	  
-		for (var i = 0; i < children.length; i++) {
-			var child = children[i];
-			var classNames = child.className.split(' ');
-			for (var j = 0; j < classNames.length; j++) {
-				if (classNames[j] == className) {
-					elements.push(child);
-					break;
-				}
-			}
-		}
-		return elements;
-	}
+  document.myGetElementsByClassName = function(className) {
+    var children = document.getElementsByTagName('*') || document.all;
+    var elements = new Array();
+    
+    for (var i = 0; i < children.length; i++) {
+      var child = children[i];
+      var classNames = child.className.split(' ');
+      for (var j = 0; j < classNames.length; j++) {
+        if (classNames[j] == className) {
+          elements.push(child);
+          break;
+        }
+      }
+    }
+    return elements;
+  }
 }
 
 var Reflection = {
-	defaultHeight : 0.5,
-	defaultOpacity: 0.5,
-	
-	add: function(image, options) {
-		Reflection.remove(image);
-		
-		doptions = { "height" : Reflection.defaultHeight, "opacity" : Reflection.defaultOpacity }
-		if (options) {
-			for (var i in doptions) {
-				if (!options[i]) {
-					options[i] = doptions[i];
-				}
-			}
-		} else {
-			options = doptions;
-		}
-	
-		try {
-			var d = document.createElement('div');
-			var p = image;
-			
-			var classes = p.className.split(' ');
-			var newClasses = '';
-			for (j=0;j<classes.length;j++) {
-				if (classes[j] != "reflect") {
-					if (newClasses) {
-						newClasses += ' '
-					}
-					
-					newClasses += classes[j];
-				}
-			}
+  defaultHeight : 0.5,
+  defaultOpacity: 0.5,
+  
+  add: function(image, options) {
+    Reflection.remove(image);
+    
+    doptions = { "height" : Reflection.defaultHeight, "opacity" : Reflection.defaultOpacity }
+    if (options) {
+      for (var i in doptions) {
+        if (!options[i]) {
+          options[i] = doptions[i];
+        }
+      }
+    } else {
+      options = doptions;
+    }
+  
+    try {
+      var d = document.createElement('div');
+      var p = image;
+      
+      var classes = p.className.split(' ');
+      var newClasses = '';
+      for (j=0;j<classes.length;j++) {
+        if (classes[j] != "reflect") {
+          if (newClasses) {
+            newClasses += ' '
+          }
+          
+          newClasses += classes[j];
+        }
+      }
 
-			var reflectionHeight = Math.floor(p.height*options['height']);
-			var divHeight = Math.floor(p.height*(1+options['height']));
-			
-			var reflectionWidth = p.width;
-			
-			if (document.all && !window.opera) {
-				/* Fix hyperlinks */
+      var reflectionHeight = Math.floor(p.height*options['height']);
+      var divHeight = Math.floor(p.height*(1+options['height']));
+      
+      var reflectionWidth = p.width;
+      
+      if (document.all && !window.opera) {
+        /* Fix hyperlinks */
                 if(p.parentElement.tagName == 'A') {
-	                var d = document.createElement('a');
-	                d.href = p.parentElement.href;
+                  var d = document.createElement('a');
+                  d.href = p.parentElement.href;
                 }  
                     
-				/* Copy original image's classes & styles to div */
-				d.className = newClasses;
-				p.className = 'reflected';
-				
-				d.style.cssText = p.style.cssText;
-				p.style.cssText = 'vertical-align: bottom';
-			
-				var reflection = document.createElement('img');
-				reflection.src = p.src;
-				reflection.style.width = reflectionWidth+'px';
-				reflection.style.display = 'block';
-				reflection.style.height = p.height+"px";
-				
-				reflection.style.marginBottom = "-"+(p.height-reflectionHeight)+'px';
-				reflection.style.filter = 'flipv progid:DXImageTransform.Microsoft.Alpha(opacity='+(options['opacity']*100)+', style=1, finishOpacity=0, startx=0, starty=0, finishx=0, finishy='+(options['height']*100)+')';
-				
-				d.style.width = reflectionWidth+'px';
-				d.style.height = divHeight+'px';
-				p.parentNode.replaceChild(d, p);
-				
-				d.appendChild(p);
-				d.appendChild(reflection);
-			} else {
-				var canvas = document.createElement('canvas');
-				if (canvas.getContext) {
-					/* Copy original image's classes & styles to div */
-					d.className = newClasses;
-					p.className = 'reflected';
-					
-					d.style.cssText = p.style.cssText;
-					p.style.cssText = 'vertical-align: bottom';
-			
-					var context = canvas.getContext("2d");
-				
-					canvas.style.height = reflectionHeight+'px';
-					canvas.style.width = reflectionWidth+'px';
-					canvas.height = reflectionHeight;
-					canvas.width = reflectionWidth;
-					
-					d.style.width = reflectionWidth+'px';
-					d.style.height = divHeight+'px';
-					p.parentNode.replaceChild(d, p);
-					
-					d.appendChild(p);
-					d.appendChild(canvas);
-					
-					context.save();
-					
-					context.translate(0,image.height-1);
-					context.scale(1,-1);
-					
-					context.drawImage(image, 0, 0, reflectionWidth, image.height);
-	
-					context.restore();
-					
-					context.globalCompositeOperation = "destination-out";
-					var gradient = context.createLinearGradient(0, 0, 0, reflectionHeight);
-					
-					gradient.addColorStop(1, "rgba(255, 255, 255, 1.0)");
-					gradient.addColorStop(0, "rgba(255, 255, 255, "+(1-options['opacity'])+")");
-		
-					context.fillStyle = gradient;
-					context.rect(0, 0, reflectionWidth, reflectionHeight*2);
-					context.fill();
-				}
-			}
-		} catch (e) {
-	    }
-	},
-	
-	remove : function(image) {
-		if (image.className == "reflected") {
-			image.className = image.parentNode.className;
-			image.parentNode.parentNode.replaceChild(image, image.parentNode);
-		}
-	}
+        /* Copy original image's classes & styles to div */
+        d.className = newClasses;
+        p.className = 'reflected';
+        
+        d.style.cssText = p.style.cssText;
+        p.style.cssText = 'vertical-align: bottom';
+      
+        var reflection = document.createElement('img');
+        reflection.src = p.src;
+        reflection.style.width = reflectionWidth+'px';
+        reflection.style.display = 'block';
+        reflection.style.height = p.height+"px";
+        
+        reflection.style.marginBottom = "-"+(p.height-reflectionHeight)+'px';
+        reflection.style.filter = 'flipv progid:DXImageTransform.Microsoft.Alpha(opacity='+(options['opacity']*100)+', style=1, finishOpacity=0, startx=0, starty=0, finishx=0, finishy='+(options['height']*100)+')';
+        
+        d.style.width = reflectionWidth+'px';
+        d.style.height = divHeight+'px';
+        p.parentNode.replaceChild(d, p);
+        
+        d.appendChild(p);
+        d.appendChild(reflection);
+      } else {
+        var canvas = document.createElement('canvas');
+        if (canvas.getContext) {
+          /* Copy original image's classes & styles to div */
+          d.className = newClasses;
+          p.className = 'reflected';
+          
+          d.style.cssText = p.style.cssText;
+          p.style.cssText = 'vertical-align: bottom';
+      
+          var context = canvas.getContext("2d");
+        
+          canvas.style.height = reflectionHeight+'px';
+          canvas.style.width = reflectionWidth+'px';
+          canvas.height = reflectionHeight;
+          canvas.width = reflectionWidth;
+          
+          d.style.width = reflectionWidth+'px';
+          d.style.height = divHeight+'px';
+          p.parentNode.replaceChild(d, p);
+          
+          d.appendChild(p);
+          d.appendChild(canvas);
+          
+          context.save();
+          
+          context.translate(0,image.height-1);
+          context.scale(1,-1);
+          
+          context.drawImage(image, 0, 0, reflectionWidth, image.height);
+  
+          context.restore();
+          
+          context.globalCompositeOperation = "destination-out";
+          var gradient = context.createLinearGradient(0, 0, 0, reflectionHeight);
+          
+          gradient.addColorStop(1, "rgba(255, 255, 255, 1.0)");
+          gradient.addColorStop(0, "rgba(255, 255, 255, "+(1-options['opacity'])+")");
+    
+          context.fillStyle = gradient;
+          context.rect(0, 0, reflectionWidth, reflectionHeight*2);
+          context.fill();
+        }
+      }
+    } catch (e) {
+      }
+  },
+  
+  remove : function(image) {
+    if (image.className == "reflected") {
+      image.className = image.parentNode.className;
+      image.parentNode.parentNode.replaceChild(image, image.parentNode);
+    }
+  }
 }
 
 function addReflections() {
-	var rimages = document.myGetElementsByClassName('reflect');
-	for (i=0;i<rimages.length;i++) {
-		var rheight = null;
-		var ropacity = null;
-		
-		var classes = rimages[i].className.split(' ');
-		for (j=0;j<classes.length;j++) {
-			if (classes[j].indexOf("rheight") == 0) {
-				var rheight = classes[j].substring(7)/100;
-			} else if (classes[j].indexOf("ropacity") == 0) {
-				var ropacity = classes[j].substring(8)/100;
-			}
-		}
-		
-		Reflection.add(rimages[i], { height: rheight, opacity : ropacity});
-	}
+  var rimages = document.myGetElementsByClassName('reflect');
+  for (i=0;i<rimages.length;i++) {
+    var rheight = null;
+    var ropacity = null;
+    
+    var classes = rimages[i].className.split(' ');
+    for (j=0;j<classes.length;j++) {
+      if (classes[j].indexOf("rheight") == 0) {
+        var rheight = classes[j].substring(7)/100;
+      } else if (classes[j].indexOf("ropacity") == 0) {
+        var ropacity = classes[j].substring(8)/100;
+      }
+    }
+    
+    Reflection.add(rimages[i], { height: rheight, opacity : ropacity});
+  }
 }
 
 var previousOnload = window.onload;
@@ -307,9 +307,9 @@ if (navigator.appName != 'Microsoft Internet Explorer'){
  * 
  *  Detects changes to font sizes when user changes browser settings
  *  <br>Fires a custom event with the following data:<br><br>
- * 	iBase  : base font size  	
- *	iDelta : difference in pixels from previous setting<br>
- *  	iSize  : size in pixel of text<br>
+ *  iBase  : base font size   
+ *  iDelta : difference in pixels from previous setting<br>
+ *    iSize  : size in pixel of text<br>
  *  
  *  * @author Lawrence Carvalho carvalho@uk.yahoo-inc.com
  * @version 1.0
@@ -320,130 +320,130 @@ if (navigator.appName != 'Microsoft Internet Explorer'){
  */
 TextResizeDetector = function() { 
     var el  = null;
-	var iIntervalDelay  = 200;
-	var iInterval = null;
-	var iCurrSize = -1;
-	var iBase = -1;
- 	var aListeners = [];
- 	var createControlElement = function() {
-	 	el = document.createElement('span');
-		el.id='textResizeControl';
-		el.innerHTML='&nbsp;';
-		el.style.position="absolute";
-		el.style.left="-9999px";
-		var elC = document.getElementById(TextResizeDetector.TARGET_ELEMENT_ID);
-		// insert before firstChild
-		if (elC)
-			elC.insertBefore(el,elC.firstChild);
-		iBase = iCurrSize = TextResizeDetector.getSize();
- 	};
+  var iIntervalDelay  = 200;
+  var iInterval = null;
+  var iCurrSize = -1;
+  var iBase = -1;
+  var aListeners = [];
+  var createControlElement = function() {
+    el = document.createElement('span');
+    el.id='textResizeControl';
+    el.innerHTML='&nbsp;';
+    el.style.position="absolute";
+    el.style.left="-9999px";
+    var elC = document.getElementById(TextResizeDetector.TARGET_ELEMENT_ID);
+    // insert before firstChild
+    if (elC)
+      elC.insertBefore(el,elC.firstChild);
+    iBase = iCurrSize = TextResizeDetector.getSize();
+  };
 
- 	function _stopDetector() {
-		window.clearInterval(iInterval);
-		iInterval=null;
-	};
-	function _startDetector() {
-		if (!iInterval) {
-			iInterval = window.setInterval('TextResizeDetector.detect()',iIntervalDelay);
-		}
-	};
- 	
- 	 function _detect() {
- 		var iNewSize = TextResizeDetector.getSize();
-		
- 		if(iNewSize!== iCurrSize) {
-			for (var 	i=0;i <aListeners.length;i++) {
-				aListnr = aListeners[i];
-				var oArgs = {  iBase: iBase,iDelta:((iCurrSize!=-1) ? iNewSize - iCurrSize + 'px' : "0px"),iSize:iCurrSize = iNewSize};
-				if (!aListnr.obj) {
-					aListnr.fn('textSizeChanged',[oArgs]);
-				}
-				else  {
-					aListnr.fn.apply(aListnr.obj,['textSizeChanged',[oArgs]]);
-				}
-			}
+  function _stopDetector() {
+    window.clearInterval(iInterval);
+    iInterval=null;
+  };
+  function _startDetector() {
+    if (!iInterval) {
+      iInterval = window.setInterval('TextResizeDetector.detect()',iIntervalDelay);
+    }
+  };
+  
+   function _detect() {
+    var iNewSize = TextResizeDetector.getSize();
+    
+    if(iNewSize!== iCurrSize) {
+      for (var  i=0;i <aListeners.length;i++) {
+        aListnr = aListeners[i];
+        var oArgs = {  iBase: iBase,iDelta:((iCurrSize!=-1) ? iNewSize - iCurrSize + 'px' : "0px"),iSize:iCurrSize = iNewSize};
+        if (!aListnr.obj) {
+          aListnr.fn('textSizeChanged',[oArgs]);
+        }
+        else  {
+          aListnr.fn.apply(aListnr.obj,['textSizeChanged',[oArgs]]);
+        }
+      }
 
- 		}
- 		return iCurrSize;
- 	};
-	var onAvailable = function() {
-		
-		if (!TextResizeDetector.onAvailableCount_i ) {
-			TextResizeDetector.onAvailableCount_i =0;
-		}
+    }
+    return iCurrSize;
+  };
+  var onAvailable = function() {
+    
+    if (!TextResizeDetector.onAvailableCount_i ) {
+      TextResizeDetector.onAvailableCount_i =0;
+    }
 
-		if (document.getElementById(TextResizeDetector.TARGET_ELEMENT_ID)) {
-			TextResizeDetector.init();
-			if (TextResizeDetector.USER_INIT_FUNC){
-				TextResizeDetector.USER_INIT_FUNC();
-			}
-			TextResizeDetector.onAvailableCount_i = null;
-		}
-		else {
-			if (TextResizeDetector.onAvailableCount_i<600) {
-	  	 	    TextResizeDetector.onAvailableCount_i++;
-				setTimeout(onAvailable,200)
-			}
-		}
-	};
-	setTimeout(onAvailable,500);
+    if (document.getElementById(TextResizeDetector.TARGET_ELEMENT_ID)) {
+      TextResizeDetector.init();
+      if (TextResizeDetector.USER_INIT_FUNC){
+        TextResizeDetector.USER_INIT_FUNC();
+      }
+      TextResizeDetector.onAvailableCount_i = null;
+    }
+    else {
+      if (TextResizeDetector.onAvailableCount_i<600) {
+            TextResizeDetector.onAvailableCount_i++;
+        setTimeout(onAvailable,200)
+      }
+    }
+  };
+  setTimeout(onAvailable,500);
 
- 	return {
-		 	/*
-		 	 * Initializes the detector
-		 	 * 
-		 	 * @param {String} sId The id of the element in which to create the control element
-		 	 */
-		 	init: function() {
-		 		
-		 		createControlElement();		
-				_startDetector();
- 			},
-			/**
-			 * Adds listeners to the ontextsizechange event. 
-			 * Returns the base font size
-			 * 
-			 */
- 			addEventListener:function(fn,obj,bScope) {
-				aListeners[aListeners.length] = {
-					fn: fn,
-					obj: obj
-				}
-				return iBase;
-			},
-			/**
-			 * performs the detection and fires textSizeChanged event
-			 * @return the current font size
-			 * @type {integer}
-			 */
- 			detect:function() {
- 				return _detect();
- 			},
- 			/**
- 			 * Returns the height of the control element
- 			 * 
-			 * @return the current height of control element
-			 * @type {integer}
- 			 */
- 			getSize:function() {
-	 				var iSize;
-			 		return el.offsetHeight;
-		 		
-		 		
- 			},
- 			/**
- 			 * Stops the detector
- 			 */
- 			stopDetector:function() {
-				return _stopDetector();
-			},
-			/*
-			 * Starts the detector
-			 */
- 			startDetector:function() {
-				return _startDetector();
-			}
- 	}
+  return {
+      /*
+       * Initializes the detector
+       * 
+       * @param {String} sId The id of the element in which to create the control element
+       */
+      init: function() {
+        
+        createControlElement();   
+        _startDetector();
+      },
+      /**
+       * Adds listeners to the ontextsizechange event. 
+       * Returns the base font size
+       * 
+       */
+      addEventListener:function(fn,obj,bScope) {
+        aListeners[aListeners.length] = {
+          fn: fn,
+          obj: obj
+        }
+        return iBase;
+      },
+      /**
+       * performs the detection and fires textSizeChanged event
+       * @return the current font size
+       * @type {integer}
+       */
+      detect:function() {
+        return _detect();
+      },
+      /**
+       * Returns the height of the control element
+       * 
+       * @return the current height of control element
+       * @type {integer}
+       */
+      getSize:function() {
+          var iSize;
+          return el.offsetHeight;
+        
+        
+      },
+      /**
+       * Stops the detector
+       */
+      stopDetector:function() {
+        return _stopDetector();
+      },
+      /*
+       * Starts the detector
+       */
+      startDetector:function() {
+        return _startDetector();
+      }
+  }
  }();
 
 TextResizeDetector.TARGET_ELEMENT_ID = 'doc';
@@ -500,17 +500,17 @@ f);return this}})(window,document,jQuery);
 //  * domain specifies which servers on your domain can access this cookie
 //  * secure specifies whether a secure connection is needed to access this cookie
 function setCookie(name,value,expires,path,domain,secure)
-{	if (expires)
-	{	var exp = new Date()
-		exp.setTime(exp.getTime() + (expires * 60 * 60 * 24 * 1000))
-		expires = exp.toGMTString()
-	}
-	
-	document.cookie = name + "=" + escape(value) + 
-	((expires) ? "; expires=" + expires : "") +
-	((path) ? "; path=" + path : "") +
-	((domain) ? "; domain=" + domain : "") +
-	((secure) ? "; secure" : "")
+{ if (expires)
+  { var exp = new Date()
+    exp.setTime(exp.getTime() + (expires * 60 * 60 * 24 * 1000))
+    expires = exp.toGMTString()
+  }
+  
+  document.cookie = name + "=" + escape(value) + 
+  ((expires) ? "; expires=" + expires : "") +
+  ((path) ? "; path=" + path : "") +
+  ((domain) ? "; domain=" + domain : "") +
+  ((secure) ? "; secure" : "")
 }
 
 
@@ -518,52 +518,52 @@ function setCookie(name,value,expires,path,domain,secure)
 //
 //  * if the returned value is "null", then the cookie has not been set or has been cleared
 function getCookie(name)
-{	var cookie = " " + document.cookie
-	var search = " " + name + "="
-	var setStr = null
-	var offset = 0
-	var end = 0
-	
-	if (cookie.length > 0)
-	{	offset = cookie.indexOf(search)
-		if (offset != -1)
-		{	offset += search.length;
-			end = cookie.indexOf(";", offset)
-			if (end == -1)
-			{	end = cookie.length;
-			}
-			setStr = unescape(cookie.substring(offset, end));
-		}
-	}
-	
-	//if the first try is null, try again, but this time with UPPERCASE for coldfusion
-	if (setStr == null) {
-		var cookie = " " + document.cookie
-		var search = " " + name.toUpperCase() + "="
-		var setStr = null
-		var offset = 0
-		var end = 0
-		
-		if (cookie.length > 0)
-		{	offset = cookie.indexOf(search)
-			if (offset != -1)
-			{	offset += search.length;
-				end = cookie.indexOf(";", offset)
-				if (end == -1)
-				{	end = cookie.length;
-				}
-				setStr = unescape(cookie.substring(offset, end));
-			}
-		}
-	}
-	
-	return(setStr);
+{ var cookie = " " + document.cookie
+  var search = " " + name + "="
+  var setStr = null
+  var offset = 0
+  var end = 0
+  
+  if (cookie.length > 0)
+  { offset = cookie.indexOf(search)
+    if (offset != -1)
+    { offset += search.length;
+      end = cookie.indexOf(";", offset)
+      if (end == -1)
+      { end = cookie.length;
+      }
+      setStr = unescape(cookie.substring(offset, end));
+    }
+  }
+  
+  //if the first try is null, try again, but this time with UPPERCASE for coldfusion
+  if (setStr == null) {
+    var cookie = " " + document.cookie
+    var search = " " + name.toUpperCase() + "="
+    var setStr = null
+    var offset = 0
+    var end = 0
+    
+    if (cookie.length > 0)
+    { offset = cookie.indexOf(search)
+      if (offset != -1)
+      { offset += search.length;
+        end = cookie.indexOf(";", offset)
+        if (end == -1)
+        { end = cookie.length;
+        }
+        setStr = unescape(cookie.substring(offset, end));
+      }
+    }
+  }
+  
+  return(setStr);
 }
 
 
 // This routine clears the value of a cookie
 function clearCookie(variable)
-{	setCookie(variable,"","Thu, 01-Jan-1970 00:00:00 GMT")
+{ setCookie(variable,"","Thu, 01-Jan-1970 00:00:00 GMT")
 }
 
 //=================================================================================
