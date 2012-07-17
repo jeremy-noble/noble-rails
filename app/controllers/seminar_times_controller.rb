@@ -2,7 +2,7 @@ class SeminarTimesController < ApplicationController
   # GET /seminar_times
   # GET /seminar_times.json
   def index
-    @seminar_times = SeminarTime.group('date(start_date), seminar_id')
+    @seminar_times = SeminarTime.all
 
     respond_to do |format|
       format.html # index.html.erb
