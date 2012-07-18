@@ -1,5 +1,4 @@
-<% 
-=begin %> 
+
 <% @seminars.each do |seminar| %>
   <tr>
     <td><%= seminar.name %></td>
@@ -10,13 +9,13 @@
 <% end %>
 </table>
 
+
+
+
+<% link_to 'New Seminar', new_seminar_path %>
+
 <% 
-=end %>
-
-
-<%# link_to 'New Seminar', new_seminar_path %>
-
-
+=begin %> 
 
 
 <div id="mainContent" class="grid clearfix">
@@ -51,7 +50,8 @@
          <section class="seminarList clearfix">
           <!-- list seminars -->
           <!-- loop through output -->
-          <% @seminars.each do |seminar| %>jeremy
+          <%= @seminars.inspect %>
+          <% @seminars.each do |seminar| %>
             <%# seminar.seminar_times.each do |seminar_time| %>
               <p><%# seminar_time.start_date %></p>
             <%# end %>
@@ -96,3 +96,6 @@
       </form>
     </div>
 </div>
+
+<% 
+=end %>

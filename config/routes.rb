@@ -1,11 +1,13 @@
 NobleRails::Application.routes.draw do
+  match '/seminars',    to: 'seminar_times#index'
+
   resources :seminars 
   resources :seminar_times
   
 
   root to: 'static_pages#home'
 
-  match '/seminars',    to: 'seminars#index'
+  #match '/seminars',    to: 'seminar#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

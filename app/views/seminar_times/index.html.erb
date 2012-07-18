@@ -1,27 +1,46 @@
+
+
 <h1>Listing seminar_times</h1>
 
 <table>
   <tr>
     <th>Start date</th>
     <th>End date</th>
-    <th>Seminar</th>
-    <th></th>
+    <th>ID</th>
+    <th>Seminar Name</th>
     <th></th>
     <th></th>
   </tr>
 
-<% @seminar_times.each do |seminar_time| %>
-  <tr>
-    <td><%= seminar_time.start_date %></td>
-    <td><%= seminar_time.end_date %></td>
-    <td><%= seminar_time.seminar_id %></td>
-    <td><%= link_to 'Show', seminar_time %></td>
-    <td><%= link_to 'Edit', edit_seminar_time_path(seminar_time) %></td>
-    <td><%= link_to 'Destroy', seminar_time, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<%= 
+@jeremy.inspect
+%>
+<% 
+=begin
+ %>
+
+<% @seminar_times_days.each do |start_date, seminar_times| %>
+  <% for seminar_time in seminar_times %>
+    <tr>
+      <td><h2><%= start_date %></h2><%= seminar_time.start_date %></td>
+      <td><%= seminar_time.end_date %></td>
+      <td><%= seminar_time.seminar_id %></td>
+      <td><strong><%= seminar_time.seminar.name %></strong></td>
+      <td><%= link_to 'Show', seminar_time %></td>
+      <td><%= link_to 'Edit', edit_seminar_time_path(seminar_time) %></td>
+      <td><%= link_to 'Destroy', seminar_time, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
 <% end %>
 </table>
 
 <br />
 
 <%= link_to 'New Seminar time', new_seminar_time_path %>
+
+
+
+
+ <%
+=end %>
+

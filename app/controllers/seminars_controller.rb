@@ -2,9 +2,13 @@ class SeminarsController < ApplicationController
   # GET /seminars
   # GET /seminars.json
   def index
-    #@seminars = Seminar.all
+    @seminars = Seminar.all
     #@seminars = Seminar.find(:all, :order => 'start_date')
-    @seminars = SeminarTime.group('date(start_date), seminar_id')
+    
+    #this one works but is confusing
+    #@seminars = SeminarTime.group('date(start_date), seminar_id')
+
+    #@seminar_times = SeminarTime.group('date(start_date), seminar_id')
 
     respond_to do |format|
       format.html # index.html.erb
