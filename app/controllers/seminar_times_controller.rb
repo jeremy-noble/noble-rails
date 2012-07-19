@@ -2,12 +2,22 @@ class SeminarTimesController < ApplicationController
   # GET /seminar_times
   # GET /seminar_times.json
   def index
-    # @seminar_times = SeminarTime.all
+    @seminar_times = SeminarTime.all
 
     #@seminar_times = SeminarTime.group('date(start_date), seminar_id')
 
-    @seminar_times = SeminarTime.find(:all, :order => 'start_date, seminar_id')
-    @jeremy = @seminar_times.group_by { |t| t.start_date.day }
+    #seminar_times = SeminarTime.find(:all, :order => 'start_date, seminar_id')
+    #beginning_of_day
+    #@seminar_times_days = seminar_times.group_by { |t| t.start_date }
+
+    # @seminars = Array.new
+
+    # seminar_times_days.each do |start_date, seminar_times|
+    #   seminar_times[start_date].each do 
+    #     #@seminars.push(seminar_times)
+    #   end
+    # end
+    #@jeremy = @blah.group_by { |b| b.seminar_id }
     #@seminar_times_days_seminars = @seminar_times_days.group_by { |s| s.@seminar_times_days.seminar_id }
 
     #@seminar_times_by_day_and_id = @seminar_times.group_by { |s| s.start_date.day }
