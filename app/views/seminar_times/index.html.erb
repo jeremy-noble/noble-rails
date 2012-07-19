@@ -49,7 +49,7 @@
                   <label for="seminar_time_<%= seminar_time.id %>">
                     <cfif not seminarsArr[idx].SeminarTimes[idxTimes].isFull or IsUserInRole("admin")>
                       <input type="checkbox" name="seminar" id="seminar_time_<%= seminar_time.id %>" value="<%= seminar_time.id %>">
-                      <%=seminar_time.start_date.strftime("%l")%>–<%=seminar_time.end_date.strftime("%l")%> <span class="amPM"><%= seminar_time.end_date.strftime("%p") %></span>
+                      <%= seminar_time.start_date.strftime("%l").strip %>—<%= seminar_time.end_date.strftime("%l").strip %> <span class="amPM"><%= seminar_time.end_date.strftime("%p") %></span>
                   </label>
                 </div>
               </div>
