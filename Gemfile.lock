@@ -115,6 +115,7 @@ DEPENDENCIES
   awesome_print
   coffee-rails (~> 3.2.1)
   jquery-rails
+  mail
   pg (= 0.12.2)
   rails (= 3.2.6)
   sass-rails (~> 3.2.3)

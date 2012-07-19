@@ -1,4 +1,8 @@
 NobleRails::Application.routes.draw do
+  resources :seminar_registrations
+
+  resources :users
+
   match '/seminars',    to: 'seminar_times#index'
 
   resources :seminars 
