@@ -1,11 +1,3 @@
-
-
-<%# 
-@seminar_times.inspect
-
-%>
-
-
 <div id="mainContent" class="grid clearfix">
     <header class="pgTitle alignLeft">
     <div class="wrapper">
@@ -15,7 +7,7 @@
     </div>
     </header>
     <div class="wrapper clearfix">
-      <form method="post" action="" id="seminarRegistration" class="clearfix">
+      <%= form_tag do %>
         <input type="hidden" name="fuseaction" value="checkSeminarInfo">
         <input type="hidden" name="subject" value="Seminar Sign Up">
         <input type="hidden" name="emailOptIn" value="yes">
@@ -62,9 +54,9 @@
             <section class="framedBoxWrapper">
             <div class="registerInfo framedBox">
               <input type="hidden" name="seminarRequired" id="seminarRequired" value="">
-              <input type="text" name="firstName" id="firstName" value="First Name">
-              <input type="text" name="lastName" id="lastName" value="Last Name">
-              <input type="text" name="email" id="email" value="Email">
+              <%= text_field_tag(:firstName, "First Name") %>
+              <%= text_field_tag(:lastName, "Last Name") %>
+              <%= text_field_tag(:email, "Email") %>
               <button type="submit" class="lozenge">Register Me!<cfinclude template="/inc/lozenge-arrow.cfm"></button>
             </div>
             </section>
@@ -73,7 +65,7 @@
             <cfinclude template="/inc/seminar-noble-address.cfm">
           </div>
         </div><!-- end of .seminarRegisterCol -->
-      </form>
+      <% end %>
     </div>
 </div>
 
