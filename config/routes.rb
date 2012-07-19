@@ -1,12 +1,15 @@
 NobleRails::Application.routes.draw do
-  resources :seminar_registrations
-
-  resources :users
-
+  
   match '/seminars',    to: 'seminar_times#index'
 
+  resources :users
   resources :seminars 
   resources :seminar_times
+  resources :seminar_registrations
+
+  
+
+  
   
 
   root to: 'static_pages#home'
