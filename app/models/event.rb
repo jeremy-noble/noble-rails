@@ -3,4 +3,8 @@ class Event < ActiveRecord::Base
 
   belongs_to :course
   has_many :sessions
+
+
+
+
 end
