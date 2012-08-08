@@ -1,19 +1,14 @@
 NobleRails::Application.routes.draw do
   
-  resources :registrations
-
-  resources :sessions
-
   resources :events
 
-  resources :courses
-
   resources :users
-
-
   
+  resources :courses  
 
+  resources :sessions
   
+  resources :registrations
   
 
   root to: 'static_pages#home'

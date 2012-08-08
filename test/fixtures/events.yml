@@ -2,8 +2,6 @@
 
 one:
   course_id: 1
-  session_id: 1
 
 two:
   course_id: 1
-  session_id: 1

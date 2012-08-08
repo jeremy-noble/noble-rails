@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name
 
-  has_many :seminar_registrations
+  has_many :registrations
 
   before_save { |user| user.email = email.downcase }
 

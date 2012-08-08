@@ -1,3 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :course_id, :session_id
+  attr_accessible :course_id
+
+  has_many :sessions
 end
