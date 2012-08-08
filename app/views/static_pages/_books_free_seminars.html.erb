@@ -12,7 +12,7 @@
       <section class="halfPgCol right homePgSeminars">
         <h2>Free Seminars<%= image_tag "ribbons/dw-right.png", {class: "ribbon"} %></h2>
         <cfinclude template="/inc/dspNextSeminars-normal-online.cfm">
-        <%= link_to seminars_path, class: "lozenge dw" do %>
+        <%= link_to events_path, class: "lozenge dw" do %>
           See All Our Free Seminars <%= image_tag("lozenge-arrow.png") %>
         <% end %>
       </section>
