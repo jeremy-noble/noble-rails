@@ -1,11 +1,15 @@
 NobleRails::Application.routes.draw do
   
-  match '/seminars',    to: 'seminar_times#index'
+  resources :registrations
+
+  resources :sessions
+
+  resources :events
+
+  resources :courses
 
   resources :users
-  resources :seminars 
-  resources :seminar_times
-  resources :seminar_registrations
+
 
   
 
