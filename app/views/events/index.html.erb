@@ -4,6 +4,7 @@
   <tr>
     <th>ID</th>
     <th>Course</th>
+    <th>Times</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +14,13 @@
   <tr>
     <td><%= event.course_id %></td>
     <td><%= event.course.name %></td>
+    <td>
+      <% #what is the best way to refactor this?!?! i know it should be.... %>
+      <% event.sessions.all.each do |session| %>
+        <p>Start: <%= session.start_time %><br>
+          End: <%= session.end_time %></p>
+      <% end %>
+    </td>
     <td><%= link_to 'Show', event %></td>
     <td><%= link_to 'Edit', edit_event_path(event) %></td>
     <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
