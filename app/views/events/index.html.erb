@@ -35,7 +35,7 @@
               <div class="row" id="seminarRow_#idx#">
                 <div class="title"><a href="/seminars/#seminarsArr[idx].PageLink#"><%= event.course.name %></a></div>
                 <div class="location"><span class="nyc ir">#seminarLocationText#</span></div>
-                <div class="date"><%= event.sessions.first.start_time.strftime("%b %e") %> <span class="day"><%= event.sessions.first.start_time.strftime("%a") %></span></div>
+                <div class="date"><%#= event.sessions.first.start_time.strftime("%b %e") %> <span class="day"><%#= event.sessions.first.start_time.strftime("%a") %></span></div>
                 <div class="time">
 
 
@@ -95,7 +95,8 @@
 
 <table>
   <tr>
-    <th>ID</th>
+    <th>Event ID</th>
+    <th>Course ID</th>
     <th>Course</th>
     <th>Times</th>
     <th></th>
@@ -105,13 +106,14 @@
 
 <% @events.each do |event| %>
   <tr>
+    <td><%= event.id %></td>
     <td><%= event.course_id %></td>
     <td><%= event.course.name %></td>
     <td>
       <% #what is the best way to refactor this?!?! i know it should be.... %>
       <% event.sessions.all.each do |session| %>
-        <p>Start: <%= session.start_time %><br>
-          End: <%= session.end_time %></p>
+        <p>Start: <%= session.start_time.to_formatted_s(:short) %><br>
+          End: <%= session.end_time.to_formatted_s(:short) %></p>
       <% end %>
     </td>
     <td><%= link_to 'Show', event %></td>

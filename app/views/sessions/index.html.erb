@@ -4,7 +4,8 @@
   <tr>
     <th>Start time</th>
     <th>End time</th>
-    <th>Event</th>
+    <th>Event ID</th>
+    <th>Course Name</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,9 +13,10 @@
 
 <% @sessions.each do |session| %>
   <tr>
-    <td><%= session.start_time %></td>
-    <td><%= session.end_time %></td>
+    <td><%= session.start_time.to_formatted_s(:short) %></td>
+    <td><%= session.end_time.to_formatted_s(:short) %></td>
     <td><%= session.event_id %></td>
+    <td><%#= session.event.course.name %></td>
     <td><%= link_to 'Show', session %></td>
     <td><%= link_to 'Edit', edit_session_path(session) %></td>
     <td><%= link_to 'Destroy', session, method: :delete, data: { confirm: 'Are you sure?' } %></td>

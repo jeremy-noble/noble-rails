@@ -42,6 +42,11 @@ class SessionsController < ApplicationController
   def create
     @session = Session.new(params[:session])
 
+
+
+    #REALLY SHOULD CREATE NEW EVENT HERE IF THERE ISN'T ONE ALREADY
+
+
     respond_to do |format|
       if @session.save
         format.html { redirect_to @session, notice: 'Session was successfully created.' }
@@ -72,7 +77,15 @@ class SessionsController < ApplicationController
   # DELETE /sessions/1
   # DELETE /sessions/1.json
   def destroy
+
     @session = Session.find(params[:id])
+
+    #when destroying the last session, also destroy the related event
+    event = Event.find(@session.event_id)
+    if event.sessions.count == 1
+      event.destroy
+    end
+    
     @session.destroy
 
     respond_to do |format|
