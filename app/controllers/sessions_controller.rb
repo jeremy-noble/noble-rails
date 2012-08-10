@@ -44,7 +44,7 @@ class SessionsController < ApplicationController
 
 
 
-    #REALLY SHOULD CREATE NEW EVENT HERE IF THERE ISN'T ONE ALREADY
+    #SHOULD CREATE NEW EVENT HERE IF THERE ISN'T ONE ALREADY??
 
 
     respond_to do |format|
@@ -81,10 +81,11 @@ class SessionsController < ApplicationController
     @session = Session.find(params[:id])
 
     #when destroying the last session, also destroy the related event
-    event = Event.find(@session.event_id)
-    if event.sessions.count == 1
-      event.destroy
-    end
+    #i know i can refactor this
+    # event = Event.find(@session.event_id)
+    # if event.sessions.count == 1
+    #   event.destroy
+    # end
     
     @session.destroy
 
