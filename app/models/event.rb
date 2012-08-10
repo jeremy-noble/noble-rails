@@ -3,6 +3,8 @@ class Event < ActiveRecord::Base
 
   belongs_to :course
   has_many :sessions, :dependent => :destroy
+  has_many :registrations
+  has_many :users, through: :registrations
 
   validates :course_id, presence: true
 
