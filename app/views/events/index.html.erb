@@ -7,7 +7,7 @@
     </div>
     </header>
     <div class="wrapper clearfix">
-      <%= form_tag do %>
+      <%= form_tag registrations_path do %>
         <input type="hidden" name="fuseaction" value="checkSeminarInfo">
         <input type="hidden" name="subject" value="Seminar Sign Up">
         <input type="hidden" name="emailOptIn" value="yes">
@@ -48,8 +48,7 @@
                 <% #what is the best way to refactor this?!?! i know it should be refactored.... %>
                 <% event.sessions.each do |session| %>
                   <label for="event_<%= event.id %>">
-                    <cfif not seminarsArr[idx].SeminarTimes[idxTimes].isFull or IsUserInRole("admin")>
-                      <input type="checkbox" name="seminar" id="event_<%= event.id %>" value="<%= event.id %>">
+                      <input type="checkbox" name="registration[event_id]" id="event_<%= event.id %>" value="<%= event.id %>">
                       <%= session.start_time.strftime("%l").strip %>—<%= session.end_time.strftime("%l").strip %> <span class="amPM"><%= session.end_time.strftime("%p") %></span>
                   </label>
                 <% end %>

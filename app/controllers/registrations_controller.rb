@@ -40,6 +40,17 @@ class RegistrationsController < ApplicationController
   # POST /registrations
   # POST /registrations.json
   def create
+
+    #lookup user
+    if User.find_by_email(params[:email])
+      #create user
+      #HOW DO I DO THIS!?!?!?
+    else
+      #update user
+    end
+
+    #loop through events and add them
+
     @registration = Registration.new(params[:registration])
 
     respond_to do |format|

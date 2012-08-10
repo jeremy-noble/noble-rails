@@ -12,4 +12,12 @@ class User < ActiveRecord::Base
   validates :last_name, length: { maximum: 80 } 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+
+  # don't know if this is really necessary:
+
+    # def self.user_with_email_exists?(email)
+    #  self.find_by_email(email)
+    # end
+
+
 end
