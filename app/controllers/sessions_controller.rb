@@ -1,8 +1,15 @@
 class SessionsController < ApplicationController
+
+  before_filter :get_event
+
+  def get_event
+    @event = Event.find(params[:event_id])
+  end
+
   # GET /sessions
   # GET /sessions.json
   def index
-    @sessions = Session.all
+    @sessions = @event.sessions
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +20,7 @@ class SessionsController < ApplicationController
   # GET /sessions/1
   # GET /sessions/1.json
   def show
-    @session = Session.find(params[:id])
+    @session = @event.sessions.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,23 +41,18 @@ class SessionsController < ApplicationController
 
   # GET /sessions/1/edit
   def edit
-    @session = Session.find(params[:id])
+    @session = @event.sessions.find(params[:id])
   end
 
   # POST /sessions
   # POST /sessions.json
   def create
-    @session = Session.new(params[:session])
-
-
-
-    #SHOULD CREATE NEW EVENT HERE IF THERE ISN'T ONE ALREADY??
-
+    @session = @event.sessions.new(params[:session])
 
     respond_to do |format|
       if @session.save
-        format.html { redirect_to @session, notice: 'Session was successfully created.' }
-        format.json { render json: @session, status: :created, location: @session }
+        format.html { redirect_to [@event, @session], notice: 'Session was successfully created.' }
+        format.json { render json: [@event, @session], status: :created, location: [@event, @session] }
       else
         format.html { render action: "new" }
         format.json { render json: @session.errors, status: :unprocessable_entity }
@@ -61,11 +63,11 @@ class SessionsController < ApplicationController
   # PUT /sessions/1
   # PUT /sessions/1.json
   def update
-    @session = Session.find(params[:id])
+    @session = @event.sessions.find(params[:id])
 
     respond_to do |format|
       if @session.update_attributes(params[:session])
-        format.html { redirect_to @session, notice: 'Session was successfully updated.' }
+        format.html { redirect_to [@event, @session], notice: 'Session was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -78,7 +80,7 @@ class SessionsController < ApplicationController
   # DELETE /sessions/1.json
   def destroy
 
-    @session = Session.find(params[:id])
+    @session = @event.sessions.find(params[:id])
 
     #when destroying the last session, also destroy the related event
     #i know i can refactor this
@@ -90,7 +92,7 @@ class SessionsController < ApplicationController
     @session.destroy
 
     respond_to do |format|
-      format.html { redirect_to sessions_url }
+      format.html { redirect_to event_sessions_url }
       format.json { head :no_content }
     end
   end

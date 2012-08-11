@@ -32,6 +32,34 @@ ActiveRecord::Schema.define(:version => 20120808191348) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "seminar_events", :force => true do |t|
+    t.integer  "seminar_id"
+    t.datetime "date"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "seminar_registrations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "seminar_time_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "seminar_times", :force => true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "seminar_event_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "seminars", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "sessions", :force => true do |t|
     t.datetime "start_time"
     t.datetime "end_time"

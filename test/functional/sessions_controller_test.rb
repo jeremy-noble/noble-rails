@@ -21,7 +21,7 @@ class SessionsControllerTest < ActionController::TestCase
       post :create, session: { end_time: @session.end_time, event_id: @session.event_id, start_time: @session.start_time }
     end
 
-    assert_redirected_to session_path(assigns(:session))
+    assert_redirected_to event_session_path(assigns(:session))
   end
 
   test "should show session" do
@@ -36,7 +36,7 @@ class SessionsControllerTest < ActionController::TestCase
 
   test "should update session" do
     put :update, id: @session, session: { end_time: @session.end_time, event_id: @session.event_id, start_time: @session.start_time }
-    assert_redirected_to session_path(assigns(:session))
+    assert_redirected_to event_session_path(assigns(:session))
   end
 
   test "should destroy session" do

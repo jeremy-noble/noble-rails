@@ -1,12 +1,12 @@
 NobleRails::Application.routes.draw do
-  
-  resources :events
 
   resources :users
   
   resources :courses  
 
-  resources :sessions
+  resources :events do
+    resources :sessions
+  end
   
   resources :registrations
   
