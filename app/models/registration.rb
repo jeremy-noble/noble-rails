@@ -10,6 +10,7 @@ class Registration < ActiveRecord::Base
   validate :user_exists
 
   after_create :new_registration_notification
+  after_create :registration_thank_you_notification
 
   def event_exists
     if !Event.exists?(event_id)
@@ -28,6 +29,11 @@ class Registration < ActiveRecord::Base
 
     def new_registration_notification
       RegistrationMailer.new_registration(self).deliver
+    end
+
+    def registration_thank_you_notification
+      @user = User.find(user_id)
+      RegistrationMailer.registration_thank_you(self, @user).deliver
     end
 
 end
