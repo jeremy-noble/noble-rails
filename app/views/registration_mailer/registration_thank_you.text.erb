@@ -1,0 +1,7 @@
+Thanks for signing up for a class at Noble Desktop!
+
+
+Registration Info
+-----------------
+Class Name: <%= @registration.event.course.name %>
+Date: <%= @registration.event.sessions.first.start_time.to_formatted_s(:short) %>—<%= @registration.event.sessions.first.end_time.to_formatted_s(:short) %>

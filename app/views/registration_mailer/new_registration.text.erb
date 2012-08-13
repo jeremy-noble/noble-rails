@@ -1,0 +1,14 @@
+You have a new registration!
+
+Event ID: <%= @registration.event_id %>
+User ID: <%= @registration.user_id %>
+
+Student Info
+------------
+Name: <%= @registration.user.first_name %> <%= @registration.user.last_name %>
+
+
+Registration Info
+-----------------
+Class Name: <%= @registration.event.course.name %>
+Date: <%= @registration.event.sessions.first.start_time.to_formatted_s(:short) %>—<%= @registration.event.sessions.first.end_time.to_formatted_s(:short) %>
