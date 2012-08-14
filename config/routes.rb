@@ -7,6 +7,8 @@ NobleRails::Application.routes.draw do
   resources :events do
     resources :sessions
   end
+
+  get '/seminars' => 'events#free_seminars', as: :free_seminars
   
   resources :registrations
   
