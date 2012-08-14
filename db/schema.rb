@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120808191348) do
+ActiveRecord::Schema.define(:version => 20120814204440) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "categories_courses", :id => false, :force => true do |t|
+    t.integer "category_id"
+    t.integer "course_id"
+  end
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -28,34 +39,6 @@ ActiveRecord::Schema.define(:version => 20120808191348) do
   create_table "registrations", :force => true do |t|
     t.integer  "user_id"
     t.integer  "event_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "seminar_events", :force => true do |t|
-    t.integer  "seminar_id"
-    t.datetime "date"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "seminar_registrations", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "seminar_time_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
-  create_table "seminar_times", :force => true do |t|
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.integer  "seminar_event_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
-  create_table "seminars", :force => true do |t|
-    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
