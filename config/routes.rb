@@ -13,6 +13,8 @@ NobleRails::Application.routes.draw do
   get '/seminars' => 'events#free_seminars', as: :free_seminars
   
   resources :registrations
+
+  post 'seminar_signup' => 'registrations#seminar_signup'
   
   root to: 'static_pages#home'
 

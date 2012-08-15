@@ -7,16 +7,7 @@
     </div>
     </header>
     <div class="wrapper clearfix">
-      <%= form_tag registrations_path do %>
-        <input type="hidden" name="fuseaction" value="checkSeminarInfo">
-        <input type="hidden" name="subject" value="Seminar Sign Up">
-        <input type="hidden" name="emailOptIn" value="yes">
-        <input type="hidden" name="redirect" value="http://www.nobledesktop.com/">
-        <input type="hidden" name="RegistrationType" value="Seminar">
-        <input name="entrypage" type="hidden" value="">
-        <input name="entrydate" type="hidden" value="">
-        <input name="numberofvisits" type="hidden" value="">
-        <input name="referrerpage" type="hidden" value="">
+      <%= form_tag seminar_signup_path do %>
         <a id="upcoming-seminars"></a>
         <h2 class="seminarListHead listHead">Register for Upcoming Seminars <a href="#seminar-archive" id="seminarArchiveLink">Click Here for Previously Recorded Seminars</a></h2>
         <section id="options" class="clearfix">
@@ -48,7 +39,7 @@
                 <% #what is the best way to refactor this?!?! i know it should be refactored.... %>
                 <% event.sessions.each do |session| %>
                   <label for="event_<%= event.id %>">
-                      <input type="checkbox" name="registration[event_id]" id="event_<%= event.id %>" value="<%= event.id %>">
+                      <%= check_box_tag "event_id[]", event.id, false, id: "event_#{event.id}" %>
                       <%= session.start_time.strftime("%l").strip %>—<%= session.end_time.strftime("%l").strip %> <span class="amPM"><%= session.end_time.strftime("%p") %></span>
                   </label>
                 <% end %>
@@ -65,7 +56,6 @@
           <div class="scroller">
             <section class="framedBoxWrapper">
             <div class="registerInfo framedBox">
-              <input type="hidden" name="seminarRequired" id="seminarRequired" value="">
               <%= text_field_tag(:first_name, "First Name") %>
               <%= text_field_tag(:last_name, "Last Name") %>
               <%= text_field_tag(:email, "Email") %>
