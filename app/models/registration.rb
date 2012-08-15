@@ -9,8 +9,8 @@ class Registration < ActiveRecord::Base
   validate :event_exists
   validate :user_exists
 
-  after_create :new_registration_notification
-  after_create :registration_thank_you_notification
+  #after_create :new_registration_notification
+  #after_create :registration_thank_you_notification
 
   def event_exists
     if !Event.exists?(event_id)
