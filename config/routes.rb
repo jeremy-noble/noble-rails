@@ -14,7 +14,7 @@ NobleRails::Application.routes.draw do
   
   resources :registrations
 
-  post 'seminar_signup' => 'registrations#seminar_signup'
+  post 'seminar_signup' => 'users#seminar_signup'
   
   root to: 'static_pages#home'
 

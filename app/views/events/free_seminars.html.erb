@@ -45,7 +45,6 @@
                 <% end %>
 
 
-
                 </div>
               </div>
              </div>
@@ -56,9 +55,12 @@
           <div class="scroller">
             <section class="framedBoxWrapper">
             <div class="registerInfo framedBox">
-              <%= text_field_tag(:first_name, "First Name") %>
-              <%= text_field_tag(:last_name, "Last Name") %>
-              <%= text_field_tag(:email, "Email") %>
+              <%= fields_for :user do |fu| %>
+                <%#= text_field_tag(:first_name, "First Name") %>
+                <%= fu.text_field :first_name, value: "First Name" %>
+                <%= fu.text_field :last_name, value: "Last Name" %>
+                <%= fu.text_field :email, value: "Email" %>
+              <% end %>
               <button type="submit" class="lozenge">Register Me!<cfinclude template="/inc/lozenge-arrow.cfm"></button>
             </div>
             </section>

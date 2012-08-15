@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :registrations
   has_many :events, through: :registrations
 
+  accepts_nested_attributes_for :registrations
+
   before_save { |user| user.email = email.downcase }
 
   validates :first_name, presence: true
