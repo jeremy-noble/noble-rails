@@ -5,6 +5,7 @@ class Event < ActiveRecord::Base
   has_many :sessions, :dependent => :destroy
   has_many :registrations
   has_many :users, through: :registrations
+  has_many :categories, through: :course
 
   validates :course_id, presence: true
 

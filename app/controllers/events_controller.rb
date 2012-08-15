@@ -5,10 +5,13 @@ class EventsController < ApplicationController
   end
 
   def free_seminars
-    @events = Event.includes(:sessions).all
 
-    # will need to group and order sessions and events here
-    # probably should create a types model for  diferent types of courses
+    # make this dynamic somehow?
+    seminar_name_to_find = ['Free Seminar']
+
+    @events = Event.joins(:course, :sessions, :categories).
+      where("categories.name=?",seminar_name_to_find).
+      order("sessions.start_time")
   end
 
   # GET /events/1

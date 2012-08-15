@@ -1,10 +1,10 @@
 NobleRails::Application.routes.draw do
 
-  resources :categories
-
   resources :users
   
-  resources :courses  
+  resources :categories
+
+  resources :courses
 
   resources :events do
     resources :sessions

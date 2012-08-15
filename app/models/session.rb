@@ -8,8 +8,7 @@ class Session < ActiveRecord::Base
 
   default_scope :order => 'start_time, event_id'
 
-  #DOESN'T WORK??!? augh
- # before_destroy event.destroy_event_if_has_no_sessions
-
+  # DOESN'T WORK??!? augh
+  # before_destroy event.destroy_event_if_has_no_sessions
 
 end
