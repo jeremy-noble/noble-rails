@@ -10,7 +10,8 @@ class EventsController < ApplicationController
     seminar_name_to_find = ['Free Seminar']
 
     @events = Event.joins(:course, :sessions, :categories).
-      where("categories.name=?",seminar_name_to_find).
+      where("categories.name = ?",seminar_name_to_find).
+      where("sessions.start_time > ?", DateTime.now).
       order("sessions.start_time")
   end
 
