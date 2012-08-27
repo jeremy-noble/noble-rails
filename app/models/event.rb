@@ -1,11 +1,12 @@
 class Event < ActiveRecord::Base
-  attr_accessible :course_id, :course_name
+  attr_accessible :course_id, :course_name, :course_id
 
   belongs_to :course
+  #belongs_to :category
   has_many :sessions, :dependent => :destroy
   has_many :registrations
   has_many :users, through: :registrations
-  has_many :categories, through: :course
+  #has_many :categories, through: :course
 
   validates :course_id, presence: true
 

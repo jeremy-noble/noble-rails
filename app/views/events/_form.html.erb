@@ -15,6 +15,10 @@
     <%= f.label :course_id %><br />
     <%= f.select :course_id, Course.all.collect{|c| [c.name, c.id]} %>
   </div>
+  <div class="field">
+    <%= f.label :category_id %><br />
+    <%= f.select :event, :category_id, Category.all.collect{|c| [c.name, c.id]} %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
