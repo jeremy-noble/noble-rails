@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :course_id %><br />
-    <%= f.number_field :course_id %>
+    <%= f.select :course_id, Course.all.collect{|c| [c.name, c.id]} %>
   </div>
   <div class="actions">
     <%= f.submit %>

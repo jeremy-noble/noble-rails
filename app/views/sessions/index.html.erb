@@ -16,7 +16,7 @@
     <td><%= session.start_time.to_formatted_s(:short) %></td>
     <td><%= session.end_time.to_formatted_s(:short) %></td>
     <td><%= session.event_id %></td>
-    <td><%#= session.event.course.name %></td>
+    <td><%= session.course_name %></td>
     <td><%= link_to 'Show', [@event, session] %></td>
     <td><%= link_to 'Edit', edit_event_session_path(@event, session) %></td>
     <td><%= link_to 'Destroy', [@event, session], method: :delete, data: { confirm: 'Are you sure?' } %></td>

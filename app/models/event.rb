@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :course_id
+  attr_accessible :course_id, :course_name
 
   belongs_to :course
   has_many :sessions, :dependent => :destroy
@@ -8,6 +8,15 @@ class Event < ActiveRecord::Base
   has_many :categories, through: :course
 
   validates :course_id, presence: true
+
+  def course_name
+    self.course.name if self.course
+  end
+
+  def course_name=(str)
+    self.course = Course.find_or_create_by_name(str.strip) if str.present?    
+  end
+
 
   #why doesn't this work? stack level too deep?
   # def self.destroy_event_if_has_no_sessions(session)

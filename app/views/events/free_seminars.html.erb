@@ -24,7 +24,7 @@
           <% @events.each do |event| %>
             <div class="seminar nyc">
               <div class="row" id="seminarRow_#idx#">
-                <div class="title"><%= link_to event.course.name, event_sessions_path(event) %></a></div>
+                <div class="title"><%= link_to event.course_name, event_sessions_path(event) %></a></div>
                 <div class="location"><span class="nyc ir">#seminarLocationText#</span></div>
                 <div class="date">
                   <% if !event.sessions.empty? %>

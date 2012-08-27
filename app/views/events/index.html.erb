@@ -15,7 +15,7 @@
   <tr>
     <td><%= event.id %></td>
     <td><%= event.course_id %></td>
-    <td><%= link_to event.course.name, event_sessions_path(event) %></td>
+    <td><%= link_to event.course_name, event_sessions_path(event) %></td>
     <td>
       <% #what is the best way to refactor this?!?! i know it should be.... %>
       <% event.sessions.all.each do |session| %>
