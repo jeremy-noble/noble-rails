@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :category_id %><br />
-    <%= f.select :event, :category_id, Category.all.collect{|c| [c.name, c.id]} %>
+    <%= f.check_box :event, :category %>
   </div>
   <div class="actions">
     <%= f.submit %>
