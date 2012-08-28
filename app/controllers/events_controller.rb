@@ -43,6 +43,7 @@ class EventsController < ApplicationController
 
   # PUT /events/1
   def update
+    # raise params.inspect
     @event = Event.find(params[:id])
 
     if @event.update_attributes(params[:event])

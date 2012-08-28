@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :course_id, :course_name, :course_id
+  attr_accessible :course_id, :course_name, :course_id, :category_ids
 
   belongs_to :course
   has_many :sessions, :dependent => :destroy
