@@ -34,7 +34,8 @@ NobleRails::Application.configure do
     :port  => 587,
     :user_name  => "htmlemail@nobledesktop.com",
     :password  => "htmlemail",
-    :authentication  => :plain
+    :authentication  => :plain,
+    :openssl_verify_mode => 'none'
   }
 
   # Defaults to nil and saved in location specified by config.assets.prefix
