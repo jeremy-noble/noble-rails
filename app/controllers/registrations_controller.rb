@@ -57,7 +57,7 @@ class RegistrationsController < ApplicationController
       if user.save
         redirect_to free_seminars_path, notice: 'Registration was successfully created.'
       else
-        redirect_to root_path
+        render root_path
       end
 
     end
