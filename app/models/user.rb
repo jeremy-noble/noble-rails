@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :first_name, :last_name
+  attr_accessible :email, :first_name, :last_name, :inactive
 
   has_many :registrations
   has_many :events, through: :registrations
@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   def destroy
     run_callbacks :destroy do
       self.inactive = true
+      self.save
     end
   end
 

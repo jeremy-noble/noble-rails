@@ -15,6 +15,9 @@
   <%= @user.email %>
 </p>
 
+<% if @user.inactive %>
+  <p style="color:red;font-weight:bold;">Inactive</p>
+<% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
