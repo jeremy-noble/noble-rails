@@ -15,11 +15,8 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
 
-  # don't know if this is really necessary:
-
-    # def self.user_with_email_exists?(email)
-    #  self.find_by_email(email)
-    # end
-
+  def name
+    self.first_name + ' ' + self.last_name
+  end
 
 end
