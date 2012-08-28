@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :inactive %>
-    <%= f.check_box :inactive %>
+    <%= f.check_box :inactive, {:checked => (@user.inactive? ? true : @user.inactive)} %>
   </div>
   <div class="actions">
     <%= f.submit %>
