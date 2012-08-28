@@ -28,17 +28,14 @@ NobleRails::Application.configure do
 
   # HEROKU email sending
   config.action_mailer.delivery_method = :smtp
-
+  config.action_mailer.raise_delivery_errors = true
   ActionMailer::Base.smtp_settings = {
     :address  => "mail.nobledesktop.com",
     :port  => 587,
     :user_name  => "htmlemail@nobledesktop.com",
     :password  => "htmlemail",
-    :authentication  => :login
+    :authentication  => :plain
   }
-
-  config.action_mailer.raise_delivery_errors = true
-  # end HEROKU email setup
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
