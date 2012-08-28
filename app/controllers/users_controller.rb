@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    if params.include? "inactive"# if url has ?inactive in it
+      # output inactive users
+      @users = User.where(inactive: true)
+    else
+      # output active users
+      @users = User.where(inactive: !true)
+    end
   end
 
   def show
