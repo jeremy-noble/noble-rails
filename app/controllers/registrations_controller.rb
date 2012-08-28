@@ -42,4 +42,58 @@ class RegistrationsController < ApplicationController
 
     redirect_to registrations_url
   end
+
+
+  def seminar_signup
+    # raise params[:user].inspect
+    # User.create(params[:user])
+    #does user not exist already?
+
+
+    if !User.exists?(:email => params[:user][:email])
+      
+      user = User.new(params[:user])
+
+      if user.save
+        redirect_to free_seminars_path, notice: 'Registration was successfully created.'
+      else
+        redirect_to root_path
+      end
+
+    end
+
+    redirect_to root_path # should be thank you or something
+
+    # raise params.inspect
+    
+    # create or update user
+
+    # loop through events in form and create new registrations
+
+    
+
+    # registrations = Array.new
+
+    # params[:event_id].each do |event_id|
+    #   registrations << {event_id: event_id, user_id: 1}
+    # end
+
+    # 
+
+    # registrations = Array.new
+    # registrations << {:event_id => 6, :user_id => 1}
+    # registrations << {:event_id => 10, :user_id => ''}
+    # if Registration.create!(registrations) # use create! to raise an error on failure
+    #   render text: "success"
+    # else
+    #   render text: "failure"
+    # end
+
+    # send email
+      # to admin
+      # to user
+      
+  end
+
+
 end

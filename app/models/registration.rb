@@ -24,6 +24,24 @@ class Registration < ActiveRecord::Base
     end
   end
 
+  # def user_first_name
+  #   self.user.first_name if self.user
+  # end
+
+  # def user_first_name=(str)
+  #   self.event.course = Course.find_or_create_by_name(str.strip) if str.present?    
+  # end
+
+  # def add_user_to_registration(user)
+  #   user = User.find_by_email(user.email)
+
+  #   if user.nil?
+  #     self.user << User.create(user)
+  #   else
+  #     self.user << user
+  #   end
+  # end
+
   private
 
     def new_registration_notification
