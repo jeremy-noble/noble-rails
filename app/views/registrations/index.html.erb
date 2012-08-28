@@ -14,7 +14,7 @@
 <% @registrations.each do |registration| %>
   <tr>
     <td><%= registration.user_id %></td>
-    <td><%= registration.user.first_name %> <%= registration.user.last_name %></td>
+    <td><%= registration.user.name %></td>
     <td><%= registration.event_id %></td>
     <td><%= registration.event.course_name %> <%= registration.event.sessions.first.start_time.to_formatted_s(:short) %></td>
     <td><%= link_to 'Show', registration %></td>

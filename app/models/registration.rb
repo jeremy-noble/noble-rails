@@ -24,7 +24,6 @@ class Registration < ActiveRecord::Base
     end
   end
 
-
   private
 
     def new_registration_notification
@@ -34,6 +33,6 @@ class Registration < ActiveRecord::Base
     def registration_thank_you_notification
       @user = User.find(user_id)
       RegistrationMailer.registration_thank_you(self, @user).deliver
-    end
+    end    
 
 end

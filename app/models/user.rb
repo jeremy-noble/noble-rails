@@ -19,4 +19,10 @@ class User < ActiveRecord::Base
     self.first_name + ' ' + self.last_name
   end
 
+  def destroy
+    run_callbacks :destroy do
+      self.inactive = true
+    end
+  end
+
 end
