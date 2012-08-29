@@ -8,7 +8,7 @@
     </header>
     <div class="wrapper clearfix">
       <%= form_tag seminar_signup_path do %>
-        <%= hidden_field_tag "event_id[]" %>
+        <%#= hidden_field_tag "user[event_ids][]" %>
         <a id="upcoming-seminars"></a>
         <h2 class="seminarListHead listHead">Register for Upcoming Seminars <a href="#seminar-archive" id="seminarArchiveLink">Click Here for Previously Recorded Seminars</a></h2>
         <section id="options" class="clearfix">
@@ -40,7 +40,7 @@
                 <% #what is the best way to refactor this?!?! i know it should be refactored.... %>
                 <% event.sessions.each do |session| %>
                   <label for="event_<%= event.id %>">
-                      <%= check_box_tag "event_id[]", event.id, false, id: "event_#{event.id}" %>
+                      <%= check_box_tag "user[event_ids][]", event.id, false, id: "event_#{event.id}" %>
                       <%= session.start_time.strftime("%l").strip %>—<%= session.end_time.strftime("%l").strip %> <span class="amPM"><%= session.end_time.strftime("%p") %></span>
                   </label>
                 <% end %>

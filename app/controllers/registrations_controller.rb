@@ -43,30 +43,4 @@ class RegistrationsController < ApplicationController
     redirect_to registrations_url
   end
 
-
-  def seminar_signup
-    # raise params.inspect
-
-    user = User.find_by_email(params[:user][:email])
-
-    if user.nil?
-      user = User.new(params[:user])
-      if !user.save
-        return redirect_to free_seminars_url
-        # render 'events/free_seminars'
-      end
-    end
-
-    params[:event_id].each do |event_id|
-      registration = Registration.new(event_id: event_id, user_id: user.id)
-      if !registration.save
-        return redirect_to free_seminars_url
-      end
-    end
-
-    redirect_to root_path # should be thank you or something
-      
-  end
-
-
 end
