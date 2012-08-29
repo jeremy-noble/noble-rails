@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       @users = User.where(inactive: true)
     else
       # output active users
-      @users = User.where(inactive: !true)
+      @users = User.where(inactive: false)
     end
   end
 

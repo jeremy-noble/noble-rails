@@ -5,7 +5,6 @@ class EventsController < ApplicationController
   end
 
   def free_seminars
-
     # make this dynamic somehow?
     seminar_name_to_find = ['Free Seminar']
 

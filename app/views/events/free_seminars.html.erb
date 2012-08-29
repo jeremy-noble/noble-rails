@@ -8,6 +8,7 @@
     </header>
     <div class="wrapper clearfix">
       <%= form_tag seminar_signup_path do %>
+        <%= hidden_field_tag "event_id[]" %>
         <a id="upcoming-seminars"></a>
         <h2 class="seminarListHead listHead">Register for Upcoming Seminars <a href="#seminar-archive" id="seminarArchiveLink">Click Here for Previously Recorded Seminars</a></h2>
         <section id="options" class="clearfix">
