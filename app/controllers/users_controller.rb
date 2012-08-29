@@ -50,39 +50,25 @@ class UsersController < ApplicationController
   end
 
    def seminar_signup
-    # raise params.inspect
     user = User.find_by_email(params[:user][:email])
-
     if user.nil?
       user = User.new(params[:user])
     else
-      user.event_ids << params[:user][:event_ids]
+      # add registrations to existing user
+      params[:user][:event_ids].each do |event_id|
+        event = Event.find(event_id)
+        if !user.events.exists?(event_id) #prevents duplicate registrations
+          user.registrations.build(event_id: event_id)
+        end
+      end
     end
-
-    # params[:user][:event_ids].each do |event_id|
-    #   event = Event.find(event_id)
-    #   if !user.events.exists?(event_id) #prevents duplicate registrations
-    #     user.events.new(event_id) 
-    #   end
-    # end
-
-    
 
     if user.save
-      render text: 'saved'
+      redirect_to registrations_path
     else
       render text: 'error'
-      # render 'events/free_seminars'
+      # redirect_to free_seminars_path
     end
-
-    # params[:event_id].each do |event_id|
-    #   registration = Registration.new(event_id: event_id, user_id: user.id)
-    #   if !registration.save
-    #     return redirect_to free_seminars_url
-    #   end
-    # end
-
-    # redirect_to root_path # should be thank you or something
   end
 
 end
