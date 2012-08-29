@@ -20,8 +20,11 @@
     <%= hidden_field_tag "event[category_ids][]" %>
     <% Category.all.each do |category| %>
       <div class="field">
-        <%= check_box_tag "event[category_ids][]", category.id, @event.categories.include?(category) %>
-        <%= category.name %>
+        <%= check_box_tag "event[category_ids][]", 
+                           category.id, 
+                           @event.categories.include?(category),
+                           id: "event_category_id_#{category.id}"%>
+        <%= label_tag "event_category_id_#{category.id}", category.name %>
       </div>
     <% end %>
   <% end %>

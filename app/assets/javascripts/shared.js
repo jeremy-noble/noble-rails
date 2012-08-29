@@ -258,9 +258,9 @@ $(document).ready(function() {
   }
   
   clearFormPlaceholderText( '#footerSignUpEmail', 'example@address.com' )
-  clearFormPlaceholderText( '#seminarRegistration #firstName', 'First Name' )
-  clearFormPlaceholderText( '#seminarRegistration #lastName', 'Last Name' )
-  clearFormPlaceholderText( '#seminarRegistration #email', 'Email' )
+  clearFormPlaceholderText( '#seminarRegistration #user_first_name', 'First Name' )
+  clearFormPlaceholderText( '#seminarRegistration #user_last_name', 'Last Name' )
+  clearFormPlaceholderText( '#seminarRegistration #user_email', 'Email' )
   clearFormPlaceholderText( '#freeClassSignUp input[name=firstName]', 'First Name' )
   clearFormPlaceholderText( '#freeClassSignUp input[name=lastName]', 'Last Name' )
   clearFormPlaceholderText( '#freeClassSignUp input[name=email]', 'Email Address' )
