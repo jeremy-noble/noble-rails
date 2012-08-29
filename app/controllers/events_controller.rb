@@ -10,8 +10,10 @@ class EventsController < ApplicationController
 
     @events = Event.joins(:course, :sessions, :categories).
       where("categories.name = ?",seminar_name_to_find).
-      where("sessions.start_time > ?", DateTime.now).
-      order("sessions.start_time")
+      where("start_time > ?", DateTime.now).
+      order("start_time desc")
+
+    @event_days = @events.group_by { |e| [e.start_time.beginning_of_day, e.course_id] }
   end
 
   # GET /events/1

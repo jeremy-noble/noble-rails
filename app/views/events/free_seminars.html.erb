@@ -22,34 +22,26 @@
          <section class="seminarList clearfix">
           <!-- list seminars -->
           <!-- loop through output -->
-          <% @events.each do |event| %>
-            <div class="seminar nyc">
+          <% @event_days.keys.sort.each do |day| %> 
+              <div class="seminar nyc">
               <div class="row" id="seminarRow_#idx#">
-                <div class="title"><%= link_to event.course_name, event_sessions_path(event) %></a></div>
+                <div class="title"><%= link_to @event_days[day].first.course_name, '#' %></a></div>
                 <div class="location"><span class="nyc ir">#seminarLocationText#</span></div>
                 <div class="date">
-                  <% if !event.sessions.empty? %>
-                    <%= event.sessions.first.start_time.strftime("%b %e") %> 
-                    <span class="day"><%= event.sessions.first.start_time.strftime("%a") %></span>
-                  <% end %>
+                    <%= day.to_s.to_date.strftime("%b %e") %>
+                    <span class="day"><%= day.to_s.to_date.strftime("%a") %></span>
                 </div>
                 <div class="time">
-
-
-
-                <% #what is the best way to refactor this?!?! i know it should be refactored.... %>
-                <% event.sessions.each do |session| %>
-                  <label for="event_<%= event.id %>">
-                      <%= check_box_tag "user[event_ids][]", event.id, false, id: "event_#{event.id}" %>
-                      <%= session.start_time.strftime("%l").strip %>—<%= session.end_time.strftime("%l").strip %> <span class="amPM"><%= session.end_time.strftime("%p") %></span>
-                  </label>
-                <% end %>
-
-
+                  <% for event in @event_days[day] %>
+                    <label for="event_<%= event.id %>">
+                        <%= check_box_tag "user[event_ids][]", event.id, false, id: "event_#{event.id}" %>
+                        <%= event.start_time.strftime("%l").strip %>—<%= event.end_time.strftime("%l").strip %> <span class="amPM"><%= event.end_time.strftime("%p") %></span>
+                    </label>
+                  <% end %>
                 </div>
               </div>
              </div>
-             <% end %>
+            <% end %>
           </section><!-- end of .seminarList -->
         </article><!-- end of article.seminarListCol -->
         <div class="seminarRegisterCol">

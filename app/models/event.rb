@@ -17,6 +17,13 @@ class Event < ActiveRecord::Base
     self.course = Course.find_or_create_by_name(str.strip) if str.present?    
   end
 
+  def start_time
+    self.sessions.first.start_time if self.sessions
+  end
+
+  def end_time
+    self.sessions.last.end_time if self.sessions
+  end
 
   #why doesn't this work? stack level too deep?
   # def self.destroy_event_if_has_no_sessions(session)
