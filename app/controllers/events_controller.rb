@@ -1,17 +1,17 @@
 class EventsController < ApplicationController
   # GET /events
   def index
-    @events = Event.includes(:sessions).all
+    @events = Event.joins(:sessions).order("date(start_time)")
   end
 
   def free_seminars
     # make this dynamic somehow?
     seminar_name_to_find = ['Free Seminar']
 
-    @events = Event.joins(:course, :sessions, :categories).
+    @events = Event.joins(:sessions, :categories).
       where("categories.name = ?",seminar_name_to_find).
-      where("start_time > ?", DateTime.now).
-      order("start_time desc")
+      where("date(start_time) > ?", DateTime.now).
+      order("date(start_time) desc")
 
     @event_days = @events.group_by { |e| [e.start_time.beginning_of_day, e.course_id] }
   end
