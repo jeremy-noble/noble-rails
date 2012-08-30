@@ -1,0 +1,12 @@
+<%= form_tag users_path, id: 'footerSignUp', name: 'footerSignUp' do %>
+    <input type="hidden" name="subject" value="New E-News Subscriber">
+    <input type="hidden" name="emailOptIn" value="yes">
+    <input type="hidden" name="redirect" value="http://www.nobledesktop.com/">
+    <input type="hidden" name="RegistrationType" value="Enews">
+    <input name="entrypage" type="hidden" value="">
+    <input name="entrydate" type="hidden" value="">
+    <input name="numberofvisits" type="hidden" value="">
+    <input name="referrerpage" type="hidden" value="">
+    <%= email_field :user, :email, id: 'footerSignUpEmail', value: 'example@address.com' %>
+    <button type="submit" name="footerSignUpSubmit" id="footerSignUpSubmit"><%= image_tag "footer-sign-up.png" %></button>
+<% end %>

@@ -361,18 +361,18 @@ $(document).ready(function() {
   //run validation
   $('#freeClassSignupForm').validate({
     rules: {
-      firstName: {
+      "user[first_name]": {
         required: true,
             notEqual: "First Name"
       },
-      lastName: {
+      "user[last_name]": {
         required: true,
             notEqual: "Last Name"
       },
-      email: 'required email'
+      "user[email]": 'required email'
     },
     messages: {
-      email: 'Not Valid'
+      "user[email]": 'Not Valid'
     }
   });
   
@@ -384,14 +384,14 @@ $(document).ready(function() {
       });
         },
     rules: {
-      email: {
+      "user[email]": {
         required: true,
         notEqual: "example@address.com",
         email: true
       }
     },
     messages: {
-      email: ''
+      "user[email]": ''
     }
   });
 });

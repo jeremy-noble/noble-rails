@@ -49,7 +49,7 @@ class UsersController < ApplicationController
     redirect_to users_url 
   end
 
-   def seminar_signup
+  def seminar_signup
 
     if params[:user][:event_ids].nil?
       render text: 'error: no event was chosen' and return
