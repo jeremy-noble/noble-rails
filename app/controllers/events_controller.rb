@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   def index
     # doing this so it sorts by the first sessions's start time, not all the sessions.start_time
     @events = Event.all
-    @events.to_a.sort_by! { |e| e.start_time }
+    @events.sort_by! { |e| e.start_time }
 
   end
 
