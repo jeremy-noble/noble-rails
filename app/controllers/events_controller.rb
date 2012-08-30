@@ -1,7 +1,10 @@
 class EventsController < ApplicationController
   # GET /events
   def index
-    @events = Event.joins(:sessions).order("date(start_time)")
+    # doing this so it sorts by the first sessions's start time, not all the sessions.start_time
+    @events = Event.all
+    @events.to_a.sort_by! { |e| e.start_time }
+
   end
 
   def free_seminars
@@ -14,6 +17,9 @@ class EventsController < ApplicationController
       order("date(start_time) desc")
 
     @event_days = @events.group_by { |e| [e.start_time.beginning_of_day, e.course_id] }
+
+    # @event_days.to_a
+    # raise @event_days.inspect
   end
 
   # GET /events/1
