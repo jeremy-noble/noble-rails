@@ -28,19 +28,7 @@
         <section class="newsletter">
             <h5>Newsletter</h5>
       <div id="footerSignUpWrapper">
-              <form id="footerSignUp" name="footerSignUp" method="post" action="#">
-                <input type="hidden" name="fuseaction" value="checkFormInfo">
-                  <input type="hidden" name="subject" value="New E-News Subscriber">
-                  <input type="hidden" name="emailOptIn" value="yes">
-                  <input type="hidden" name="redirect" value="http://www.nobledesktop.com/">
-                  <input type="hidden" name="RegistrationType" value="Enews">
-                  <input name="entrypage" type="hidden" value="">
-                  <input name="entrydate" type="hidden" value="">
-                  <input name="numberofvisits" type="hidden" value="">
-                  <input name="referrerpage" type="hidden" value="">
-                  <input type="email" name="email"  id="footerSignUpEmail" value="example@address.com">
-                  <button type="submit" name="footerSignUpSubmit" id="footerSignUpSubmit"><%= image_tag "footer-sign-up.png" %></button>
-              </form>
+        <%= render 'shared/form_footer_signup' %>
       </div>
             <p class="social">
                 <a href="#" target="_blank" class="facebook">Like Us</a>

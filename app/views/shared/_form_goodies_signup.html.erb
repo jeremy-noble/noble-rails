@@ -1,0 +1,14 @@
+<%= form_tag users_path, id: 'freeClassSignupForm' do %>
+  <input type="hidden" name="fuseaction" value="checkFormInfo">
+  <input type="hidden" name="subject" value="New E-News Subscriber">
+  <input type="hidden" name="emailOptIn" value="yes">
+  <input type="hidden" name="RegistrationType" value="FreeClass">
+  <input name="entrypage" type="hidden" value="">
+  <input name="entrydate" type="hidden" value="">
+  <input name="numberofvisits" type="hidden" value="">
+  <input name="referrerpage" type="hidden" value="">
+  <%= text_field_tag 'user[first_name]', "First Name" %>
+  <%= text_field_tag 'user[last_name]', "Last Name" %>
+  <%= text_field_tag 'user[email]', "Email Address" %>
+  <button type="submit" class="lozenge fl">Enter To Win<%= image_tag "lozenge-arrow.png" %></button>
+<% end %>

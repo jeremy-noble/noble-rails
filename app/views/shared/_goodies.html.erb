@@ -17,21 +17,7 @@
         <div id="freeClass">
             <h1>Win a Free Class!</h1>
             <p>Join our email list for a chance to win</p>
-                <%= form_tag(users_path, :method => "post") do %>
-                    <input type="hidden" name="fuseaction" value="checkFormInfo">
-                    <input type="hidden" name="subject" value="New E-News Subscriber">
-                    <input type="hidden" name="emailOptIn" value="yes">
-                    <input type="hidden" name="redirect" value="http://www.nobledesktop.com/">
-                    <input type="hidden" name="RegistrationType" value="FreeClass">
-                    <input name="entrypage" type="hidden" value="">
-                    <input name="entrydate" type="hidden" value="">
-                    <input name="numberofvisits" type="hidden" value="">
-                    <input name="referrerpage" type="hidden" value="">
-                    <%= text_field_tag(:first_name, "First Name") %>
-                    <%= text_field_tag(:last_name, "Last Name") %>
-                    <%= text_field_tag(:email, "Email Address") %>
-                    <button type="submit" class="lozenge fl">Enter To Win<%= image_tag "lozenge-arrow.png" %></button>
-                <% end %>
+            <%= render 'shared/form_goodies_signup' %>
         </div>
     </div>
   </div>
