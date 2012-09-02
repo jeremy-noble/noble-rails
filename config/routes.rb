@@ -15,6 +15,7 @@ NobleRails::Application.routes.draw do
   resources :registrations
 
   post 'seminar_signup' => 'users#seminar_signup'
+  post 'enews_signup' => 'users#enews_signup'
 
   get '/hires' => 'static_pages#hires'
   

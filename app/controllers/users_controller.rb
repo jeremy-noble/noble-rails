@@ -49,7 +49,23 @@ class UsersController < ApplicationController
     redirect_to users_url 
   end
 
-   def seminar_signup
+  def enews_signup
+    @user = User.find_by_email(params[:user][:email])
+    if @user.nil?
+      @user = User.new(params[:user])
+    else
+      @user.update_attributes(params[:user])
+      @user.inactive = false
+    end
+
+    if @user.save
+      redirect_to @user, notice: 'User was successfully created.'
+    else
+      render action: "new"
+    end
+  end
+
+  def seminar_signup
 
     if params[:user][:event_ids].nil?
       render text: 'error: no event was chosen' and return
