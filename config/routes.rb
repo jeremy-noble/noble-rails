@@ -11,10 +11,10 @@ NobleRails::Application.routes.draw do
   end
 
   get '/seminars' => 'events#free_seminars', as: :free_seminars
-  
-  resources :registrations
+  post 'seminar_signup' => 'events#free_seminars_signup'
 
-  post 'seminar_signup' => 'users#seminar_signup'
+  resources :registrations
+  
   post 'enews_signup' => 'users#enews_signup'
 
   get '/hires' => 'static_pages#hires'

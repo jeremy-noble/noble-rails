@@ -6,18 +6,6 @@ class EventsController < ApplicationController
     @events = Event.all
   end
 
-  def free_seminars
-    # make this dynamic somehow?
-    seminar_name_to_find = ['Free Seminar']
-
-    @events = Event.joins(:sessions, :categories).
-      where("categories.name = ?", seminar_name_to_find).
-      where("date(start_time) > ?", DateTime.now).
-      order("date(start_time) desc")
-
-    @event_days = @events.group_by { |e| [e.start_time.beginning_of_day, e.course_id] }
-  end
-
   # GET /events/1
   def show
     @event = Event.find(params[:id])
@@ -62,6 +50,68 @@ class EventsController < ApplicationController
     @event.destroy
 
     redirect_to events_url
+  end
+
+  def free_seminars
+    @errors = {}
+    # make this dynamic somehow?
+    seminar_name_to_find = ['Free Seminar']
+
+    @events = Event.joins(:sessions, :categories).
+      where("categories.name = ?", seminar_name_to_find).
+      where("date(start_time) > ?", DateTime.now).
+      order("date(start_time) desc")
+
+    @event_days = @events.group_by { |e| [e.start_time.beginning_of_day, e.course_id] }
+  end
+
+  def free_seminars_signup
+
+    # raise params.inspect
+
+    user = User.find_by_email(params[:user][:email])
+
+    if user.nil?
+      user = User.new(params[:user])
+    else
+      user.update_attributes(params[:user])
+    end
+
+    begin
+      ActiveRecord::Base.transaction do
+        user.save!
+        params[:event_ids].each do |e|
+         registration = Registration.new({event_id: e, user_id: user.id})
+         registration.save!
+       end
+      end
+    rescue ActiveRecord::RecordInvalid => invalid
+      # do whatever you wish to warn the user, or log something
+      @errors = invalid.record.errors
+      render action: "free_seminars"
+      # raise @errors.inspect
+    end
+
+    # if params[:user][:event_ids].nil?
+    #   render text: 'error: no event was chosen' and return
+    # end
+
+    # user = User.find_by_email(params[:user][:email])
+    # if user.nil?
+    #   user = User.new(params[:user])
+    # else
+    #   user.update_attributes(params[:user])
+    # end
+
+    # if user.save
+    #   redirect_to registrations_path
+    # else
+    #   render text: 'error: user did not save' and return
+    #   # redirect_to free_seminars_path
+    # end
+
+    redirect_to free_seminars_path
+
   end
 
 end

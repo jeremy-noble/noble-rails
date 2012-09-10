@@ -1,3 +1,14 @@
+ <% if @errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@errors.count, "error") %> prohibited this event from being saved:</h2>
+      <ul>
+      <% @errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 <div id="mainContent" class="grid clearfix">
     <header class="pgTitle alignLeft">
     <div class="wrapper">
@@ -35,7 +46,7 @@
                   <%# sort each days events by asec start_time %>
                   <% for event in @event_days[day].sort_by! {|e| e.start_time} %>
                     <label for="event_<%= event.id %>">
-                        <%= check_box_tag "user[event_ids][]", event.id, false, id: "event_#{event.id}" %>
+                        <%= check_box_tag "event_ids[]", event.id, false, id: "event_#{event.id}" %>
                         <%= event.start_time.strftime("%l").strip %>—<%= event.end_time.strftime("%l").strip %> <span class="amPM"><%= event.end_time.strftime("%p") %></span>
                     </label>
                   <% end %>
