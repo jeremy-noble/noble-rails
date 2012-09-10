@@ -65,6 +65,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   def seminar_signup
 
     if params[:user][:event_ids].nil?

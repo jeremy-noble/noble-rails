@@ -1,5 +1,5 @@
 class RegistrationMailer < ActionMailer::Base
-  default from: "from@web@nobledesktop.com"
+  default from: "web@nobledesktop.com"
 
   def new_registration(registration)
     @registration = registration

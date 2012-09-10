@@ -7,9 +7,13 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :registrations
 
   before_save { |user| user.email = email.downcase }
+  after_create :new_user_notification
 
-  # validates :first_name, presence: true
-  # validates :last_name, presence: true
+  # let these be blank so the enews signup on the bottom works.
+  # (should prob make it so they have to type in a value there.)
+    # validates :first_name, presence: true
+    # validates :last_name, presence: true
+
   validates :first_name, length: { maximum: 80 }
   validates :last_name, length: { maximum: 80 } 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -25,5 +29,11 @@ class User < ActiveRecord::Base
       self.save
     end
   end
+
+   private
+
+    def new_user_notification
+      UserMailer.new_user(self).deliver
+    end
 
 end
