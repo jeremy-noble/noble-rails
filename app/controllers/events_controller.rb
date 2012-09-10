@@ -1,7 +1,9 @@
 class EventsController < ApplicationController
   # GET /events
   def index
-    @events = Event.joins(:sessions).order("date(start_time)")
+    # @events = Event.joins(:sessions).order("date(start_time)").group('event_id') 
+      # this unfonately will not list an event if it doesn't yet have any sessions
+    @events = Event.all
   end
 
   def free_seminars
@@ -9,7 +11,7 @@ class EventsController < ApplicationController
     seminar_name_to_find = ['Free Seminar']
 
     @events = Event.joins(:sessions, :categories).
-      where("categories.name = ?",seminar_name_to_find).
+      where("categories.name = ?", seminar_name_to_find).
       where("date(start_time) > ?", DateTime.now).
       order("date(start_time) desc")
 
