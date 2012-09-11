@@ -1,0 +1,2 @@
+module FreeSeminarsHelper
+end

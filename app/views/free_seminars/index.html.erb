@@ -1,3 +1,14 @@
+<% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this artist from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 <div id="mainContent" class="grid clearfix">
     <header class="pgTitle alignLeft">
     <div class="wrapper">
@@ -7,7 +18,7 @@
     </div>
     </header>
     <div class="wrapper clearfix">
-      <%= form_tag seminar_signup_path, id: 'seminarRegistration' do %>
+      <%= form_tag free_seminars_signup_path, id: 'seminarRegistration' do %>
         <%#= hidden_field_tag "user[event_ids][]" %>
         <a id="upcoming-seminars"></a>
         <h2 class="seminarListHead listHead">Register for Upcoming Seminars <a href="#seminar-archive" id="seminarArchiveLink">Click Here for Previously Recorded Seminars</a></h2>
@@ -35,7 +46,7 @@
                   <%# sort each days events by asec start_time %>
                   <% for event in @event_days[day] %>
                     <label for="event_<%= event.id %>">
-                        <%= check_box_tag "user[event_ids][]", event.id, false, id: "event_#{event.id}" %>
+                        <%= check_box_tag "user[event_ids][]", event.id, @user.events.include?(event), id: "event_#{event.id}" %>
                         <%= event.start_time.strftime("%l").strip %>—<%= event.end_time.strftime("%l").strip %> <span class="amPM"><%= event.end_time.strftime("%p") %></span>
                     </label>
                   <% end %>
@@ -51,9 +62,9 @@
             <div class="registerInfo framedBox">
               <%= fields_for :user do |fu| %>
                 <%#= text_field_tag(:first_name, "First Name") %>
-                <%= fu.text_field :first_name, value: "First Name" %>
-                <%= fu.text_field :last_name, value: "Last Name" %>
-                <%= fu.text_field :email, value: "Email" %>
+                <%= fu.text_field :first_name%>
+                <%= fu.text_field :last_name%>
+                <%= fu.text_field :email %>
               <% end %>
               <button type="submit" class="lozenge">Register Me!<cfinclude template="/inc/lozenge-arrow.cfm"></button>
             </div>

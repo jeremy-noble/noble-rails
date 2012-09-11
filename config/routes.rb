@@ -10,7 +10,8 @@ NobleRails::Application.routes.draw do
     resources :sessions
   end
 
-  get '/seminars' => 'events#free_seminars', as: :free_seminars
+  get '/seminars' => 'free_seminars#index', as: :free_seminars
+  post '/seminars/signup' => 'free_seminars#signup', as: :free_seminars_signup
   
   resources :registrations
 
