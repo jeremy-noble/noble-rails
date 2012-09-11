@@ -44,7 +44,7 @@
                 </div>
                 <div class="time">
                   <%# sort each days events by asec start_time %>
-                  <% for event in @event_days[day].sort_by! {|e| e.start_time} %>
+                  <% for event in @event_days[day] %>
                     <label for="event_<%= event.id %>">
                         <%= check_box_tag "event_ids[]", event.id, false, id: "event_#{event.id}" %>
                         <%= event.start_time.strftime("%l").strip %>—<%= event.end_time.strftime("%l").strip %> <span class="amPM"><%= event.end_time.strftime("%p") %></span>

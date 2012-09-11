@@ -1,9 +1,23 @@
 class EventsController < ApplicationController
   # GET /events
   def index
-    # @events = Event.joins(:sessions).order("date(start_time)").group('event_id') 
-      # this unfonately will not list an event if it doesn't yet have any sessions
+    # doing this so it sorts by the first sessions's start time, not all the sessions.start_time
     @events = Event.all
+    @events.sort_by! { |e| e.start_time }
+  end
+
+  def free_seminars
+    # make this dynamic somehow?
+    seminar_name_to_find = ['Free Seminar']
+
+    @events = Event.joins(:sessions, :categories).
+      where("categories.name = ?",seminar_name_to_find).
+      where("date(start_time) > ?", DateTime.now)
+    @events.sort_by! { |e| e.start_time }
+    @event_days = @events.group_by { |e| [e.start_time.beginning_of_day, e.course_id] }
+
+    # @event_days.to_a
+    # raise @event_days.inspect
   end
 
   # GET /events/1
@@ -65,53 +79,5 @@ class EventsController < ApplicationController
     @event_days = @events.group_by { |e| [e.start_time.beginning_of_day, e.course_id] }
   end
 
-  def free_seminars_signup
-
-    # raise params.inspect
-
-    user = User.find_by_email(params[:user][:email])
-
-    if user.nil?
-      user = User.new(params[:user])
-    else
-      user.update_attributes(params[:user])
-    end
-
-    begin
-      ActiveRecord::Base.transaction do
-        user.save!
-        params[:event_ids].each do |e|
-         registration = Registration.new({event_id: e, user_id: user.id})
-         registration.save!
-       end
-      end
-    rescue ActiveRecord::RecordInvalid => invalid
-      # do whatever you wish to warn the user, or log something
-      @errors = invalid.record.errors
-      render action: "free_seminars"
-      # raise @errors.inspect
-    end
-
-    # if params[:user][:event_ids].nil?
-    #   render text: 'error: no event was chosen' and return
-    # end
-
-    # user = User.find_by_email(params[:user][:email])
-    # if user.nil?
-    #   user = User.new(params[:user])
-    # else
-    #   user.update_attributes(params[:user])
-    # end
-
-    # if user.save
-    #   redirect_to registrations_path
-    # else
-    #   render text: 'error: user did not save' and return
-    #   # redirect_to free_seminars_path
-    # end
-
-    redirect_to free_seminars_path
-
-  end
 
 end
