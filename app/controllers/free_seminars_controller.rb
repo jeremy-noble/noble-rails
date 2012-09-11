@@ -1,33 +1,24 @@
 class FreeSeminarsController < ApplicationController
+  require 'shared' #app/modules/shared.rb
 
   def index
     @user = User.new
-    # set defaults for page display. this should really be javascripted!
+
+    # set defaults for page display.
     @user.attributes = {first_name: "First Name", last_name: "Last Name", email: "Email"}
 
-    seminar_name_to_find = ['Free Seminar']
-
-    @events = Event.joins(:sessions, :categories).
-      where("categories.name = ?",seminar_name_to_find).
-      where("date(start_time) > ?", DateTime.now)
-    @events.sort_by! { |e| e.start_time }
-    @event_days = @events.group_by { |e| [e.start_time.beginning_of_day, e.course_id] }
+    # get all the events of a certain category and group them by day
+    @event_days = Shared::category_group_by_day(['Free Seminar'])
   end
 
   def signup
+    # get all the events of a certain category and group them by day
+    @event_days = Shared::category_group_by_day(['Free Seminar'])
 
-# NEED TO REFACTOR THIS!!!!
-    seminar_name_to_find = ['Free Seminar']
-
-    @events = Event.joins(:sessions, :categories).
-      where("categories.name = ?",seminar_name_to_find).
-      where("date(start_time) > ?", DateTime.now)
-    @events.sort_by! { |e| e.start_time }
-    @event_days = @events.group_by { |e| [e.start_time.beginning_of_day, e.course_id] }
-
-
+    # lookup user or create new one
     @user = User.find_or_initialize_by_email(params[:user][:email])
 
+    # update user attributes
     @user.attributes = params[:user]
 
     # this checks to see if the user is valid. if not it will add to .errors array
@@ -45,6 +36,7 @@ class FreeSeminarsController < ApplicationController
       @user.errors[:base] << "You must choose a seminar!"
     end
 
+    # if all is well, save
     if @user.errors.empty? && @user.save
       redirect_to registrations_path
     else
