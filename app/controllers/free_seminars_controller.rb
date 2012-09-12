@@ -8,12 +8,12 @@ class FreeSeminarsController < ApplicationController
     @user.attributes = {first_name: "First Name", last_name: "Last Name", email: "Email"}
 
     # get all the events of a certain category and group them by day
-    @event_days = Shared::category_group_by_day(['Free Seminar'])
+    @event_days = Shared::category_group_by_day(['Free Seminar', 'Online Seminar'])
   end
 
   def signup
     # get all the events of a certain category and group them by day
-    @event_days = Shared::category_group_by_day(['Free Seminar'])
+    @event_days = Shared::category_group_by_day(['Free Seminar', 'Online Seminar'])
 
     # lookup user or create new one
     @user = User.find_or_initialize_by_email(params[:user][:email])
